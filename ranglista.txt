@@ -1,0 +1,49 @@
+2	2	0	0	mivan?
+2	2	0	0	mate3
+2	2	0	0	ok
+2	2	0	2	mate3
+2	2	0	4	mate3
+2	2	0	6	mate3
+2	2	0	10	haha
+2	2	0	11	mate3
+2	2	0	13	test
+2	2	1	0	Gagyi
+2	2	1	5	heeeeeeeeeeeeee
+3	3	3	10	wow
+3	3	0	90	asd
+2	2	3	10	nyertem hahahahahaa
+8	8	10	0	ASD
+8	8	10	0	bji
+8	8	10	0	bjio
+8	8	10	0	jtd
+8	8	10	0	dg
+8	8	10	1	ez jo
+8	8	10	1	uff
+8	8	10	1	asd
+8	8	10	1	adf
+8	8	10	1	hih
+16	16	40	1	oks
+16	16	40	1	haoá
+16	16	40	218	teszt
+16	16	40	255	yeeeeeeeeeeeeeeeeet
+16	16	40	335	lol nyertem
+30	16	99	0	lehetne meg jobb he 
+30	16	99	1	ez mar tetszik
+30	16	99	1	lpé
+30	16	99	1	fadf
+30	16	99	2	vujhb
+30	16	99	5	cfg
+30	16	99	5	jhig
+10	10	2	4	árvíztűrő
+30	30	0	0	tükörfúrógép
+100	100	0	1	haha
+50	50	0	0	mamam
+50	50	0	0	jojojoo
+20	20	0	0	uwu
+150	100	0	2	uwu
+20	2	2	25	jujjjjj
+90	50	60	23	nem is nyertem
+90	50	300	8	lpő
+40	3	4	2	adf
+5	5	1	2	jeeeee
+10	10	3	5	gfsd

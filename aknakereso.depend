@@ -1,0 +1,628 @@
+# depslib dependency file v1.0
+1574597660 source:c:\projects\codeblocks\aknakereso\main.c
+	<stdio.h>
+	"structok.h"
+	"ujjatek.h"
+	"ranglista.h"
+	"debugmalloc.h"
+	<SDL2/SDL.h>
+	<SDL2/SDL2_gfxPrimitives.h>
+	"sdl_fgvek.h"
+
+1572602366 c:\projects\codeblocks\aknakereso\palyaletrehoz.h
+	"structok.h"
+
+1574592520 c:\projects\codeblocks\aknakereso\structok.h
+	<stdbool.h>
+	<SDL2/SDL.h>
+
+1572602366 c:\projects\codeblocks\aknakereso\bombatlehelyez.h
+	"structok.h"
+
+1573494333 source:c:\projects\codeblocks\aknakereso\bombatlehelyez.c
+	"bombatlehelyez.h"
+	"structok.h"
+	<stdio.h>
+	<stdlib.h>
+
+1573494333 source:c:\projects\codeblocks\aknakereso\palyaletrehoz.c
+	"palyaletrehoz.h"
+	"structok.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1572637922 c:\projects\codeblocks\aknakereso\kirajzol.h
+	"structok.h"
+
+1574520870 source:c:\projects\codeblocks\aknakereso\kirajzol.c
+	"kirajzol.h"
+	"structok.h"
+	<stdio.h>
+	<stdbool.h>
+
+1572798964 source:c:\projects\codeblocks\aknakereso\jelol.c
+	"jelol.h"
+	"structok.h"
+	<stdio.h>
+	<stdbool.h>
+
+1572798839 c:\projects\codeblocks\aknakereso\jelol.h
+	"structok.h"
+
+1572797589 source:c:\projects\codeblocks\aknakereso\nyert_e.c
+	"jelol.h"
+	"structok.h"
+	<stdio.h>
+	<stdbool.h>
+
+1572797589 c:\projects\codeblocks\aknakereso\nyert_e.h
+	"structok.h"
+
+1574602145 source:c:\projects\codeblocks\aknakereso\ujjatek.c
+	<stdio.h>
+	<stdbool.h>
+	<stdlib.h>
+	<time.h>
+	"structok.h"
+	"kirajzol.h"
+	"jatek_fgvek.h"
+	"ranglista.h"
+	<SDL2/SDL.h>
+	<SDL2/SDL2_gfxPrimitives.h>
+	"sdl_fgvek.h"
+	<SDL_image.h>
+	"debugmalloc.h"
+
+1574597660 c:\projects\codeblocks\aknakereso\ujjatek.h
+	<SDL2/SDL.h>
+	<SDL2/SDL2_gfxPrimitives.h>
+
+1573494333 source:c:\projects\codeblocks\aknakereso\allapotvaltoztat.c
+	"structok.h"
+	"allapotvaltoztat.h"
+	<stdbool.h>
+	<stdio.h>
+
+1572798839 c:\projects\codeblocks\aknakereso\allapotvaltoztat.h
+	"structok.h"
+
+1572901773 c:\projects\codeblocks\aknakereso\ranglsitaolvas.h
+
+1572983503 source:c:\projects\codeblocks\aknakereso\ranglistaolvas.c
+	"ranglsitaolvas.h"
+	<stdio.h>
+	<stdbool.h>
+	<string.h>
+	<stdlib.h>
+
+1573467280 c:\projects\codeblocks\aknakereso\ranglsita.h
+	"structok.h"
+
+1574516993 source:c:\projects\codeblocks\aknakereso\ranglista.c
+	"ranglista.h"
+	<stdio.h>
+	<stdbool.h>
+	<string.h>
+	<stdlib.h>
+	"structok.h"
+	"debugmalloc.h"
+
+1574072105 c:\projects\codeblocks\aknakereso\ranglista.h
+	"structok.h"
+
+1574022027 source:c:\projects\codeblocks\aknakereso\jatek_fgvek.c
+	"jatek_fgvek.h"
+	"structok.h"
+	<stdbool.h>
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"debugmalloc.h"
+
+1573494348 c:\projects\codeblocks\aknakereso\jatek_fgvek.h
+	"structok.h"
+
+1573496081 c:\projects\codeblocks\aknakereso\debugmalloc.h
+	<stdbool.h>
+	"debugmalloc-impl.h"
+
+1573496081 c:\projects\codeblocks\aknakereso\debugmalloc-impl.h
+	<stdbool.h>
+	<stddef.h>
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<stdarg.h>
+	<process.h>
+	<unistd.h>
+
+1574601137 c:\projects\codeblocks\aknakereso\sdl_fgvek.h
+	"structok.h"
+
+1574603536 source:c:\projects\codeblocks\aknakereso\sdl_fgvek.c
+	<SDL2/SDL.h>
+	<SDL2/SDL2_gfxPrimitives.h>
+	<SDL2/SDL_ttf.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdbool.h>
+	<string.h>
+	<SDL_image.h>
+	"structok.h"
+	"sdl_segedfgvek.h"
+
+1573513115 source:c:\projects\codeblocks\aknakereso\sdl\sdl_fgvek.c
+	<SDL2/SDL.h>
+	<SDL2/SDL2_gfxPrimitives.h>
+	<SDL2/SDL_ttf.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdbool.h>
+	<string.h>
+
+1519932852 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_joystick.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_shape.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<wchar.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<sal.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\begin_code.h
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\close_code.h
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<mbarrier.h>
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	<process.h>
+	<stdlib.h>
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mm3dnow.h>
+	<immintrin.h>
+	<mmintrin.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	<pmmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"SDL_endian.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_shape.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519922212 c:\program files (x86)\codeblocks\mingw\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1574602583 source:c:\projects\codeblocks\aknakereso\sdl_segedfgvek.c
+	<SDL2/SDL.h>
+	<SDL2/SDL2_gfxPrimitives.h>
+	<SDL2/SDL_ttf.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdbool.h>
+	<string.h>
+	<SDL_image.h>
+	"structok.h"
+	"sdl_segedfgvek.h"
+
+1574602583 c:\projects\codeblocks\aknakereso\sdl_segedfgvek.h
+
+1574022027 source:c:\projects\codeblocks\akna_fajlokbiztment\ize\miutanelbasztam\aknakereso\jatek_fgvek.c
+	"jatek_fgvek.h"
+	"structok.h"
+	<stdbool.h>
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"debugmalloc.h"
+
+1573494348 c:\projects\codeblocks\akna_fajlokbiztment\ize\miutanelbasztam\aknakereso\jatek_fgvek.h
+	"structok.h"
+
+1574521174 c:\projects\codeblocks\akna_fajlokbiztment\ize\miutanelbasztam\aknakereso\structok.h
+	<stdbool.h>
+	<SDL2/SDL.h>
+
+1573496081 c:\projects\codeblocks\akna_fajlokbiztment\ize\miutanelbasztam\aknakereso\debugmalloc.h
+	<stdbool.h>
+	"debugmalloc-impl.h"
+
+1573496081 c:\projects\codeblocks\akna_fajlokbiztment\ize\miutanelbasztam\aknakereso\debugmalloc-impl.h
+	<stdbool.h>
+	<stddef.h>
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<stdarg.h>
+	<process.h>
+	<unistd.h>
+
+1574520870 source:c:\projects\codeblocks\akna_fajlokbiztment\ize\miutanelbasztam\aknakereso\kirajzol.c
+	"kirajzol.h"
+	"structok.h"
+	<stdio.h>
+	<stdbool.h>
+
+1572637922 c:\projects\codeblocks\akna_fajlokbiztment\ize\miutanelbasztam\aknakereso\kirajzol.h
+	"structok.h"
+
+1574521418 source:c:\projects\codeblocks\akna_fajlokbiztment\ize\miutanelbasztam\aknakereso\main.c
+	<stdio.h>
+	"structok.h"
+	"ujjatek.h"
+	"ranglista.h"
+	"debugmalloc.h"
+	<SDL2/SDL.h>
+	<SDL2/SDL2_gfxPrimitives.h>
+	"sdl_fgvek.h"
+
+1574005681 c:\projects\codeblocks\akna_fajlokbiztment\ize\miutanelbasztam\aknakereso\ujjatek.h
+	<SDL2/SDL.h>
+	<SDL2/SDL2_gfxPrimitives.h>
+
+1574072105 c:\projects\codeblocks\akna_fajlokbiztment\ize\miutanelbasztam\aknakereso\ranglista.h
+	"structok.h"
+
+1574590595 c:\projects\codeblocks\akna_fajlokbiztment\ize\miutanelbasztam\aknakereso\sdl_fgvek.h
+	"structok.h"
+
+1574516993 source:c:\projects\codeblocks\akna_fajlokbiztment\ize\miutanelbasztam\aknakereso\ranglista.c
+	"ranglista.h"
+	<stdio.h>
+	<stdbool.h>
+	<string.h>
+	<stdlib.h>
+	"structok.h"
+	"debugmalloc.h"
+
+1574590595 source:c:\projects\codeblocks\akna_fajlokbiztment\ize\miutanelbasztam\aknakereso\sdl_fgvek.c
+	<SDL2/SDL.h>
+	<SDL2/SDL2_gfxPrimitives.h>
+	<SDL2/SDL_ttf.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdbool.h>
+	<string.h>
+	<SDL_image.h>
+	"structok.h"
+	"sdl_segedfgvek.h"
+
+1574521966 c:\projects\codeblocks\akna_fajlokbiztment\ize\miutanelbasztam\aknakereso\sdl_segedfgvek.h
+
+1574590595 source:c:\projects\codeblocks\akna_fajlokbiztment\ize\miutanelbasztam\aknakereso\ujjatek.c
+	<stdio.h>
+	<stdbool.h>
+	<stdlib.h>
+	<time.h>
+	"structok.h"
+	"kirajzol.h"
+	"jatek_fgvek.h"
+	"ranglista.h"
+	<SDL2/SDL.h>
+	<SDL2/SDL2_gfxPrimitives.h>
+	"sdl_fgvek.h"
+	<SDL_image.h>
+	"debugmalloc.h"
+
+1574592172 source:c:\projects\codeblocks\akna_fajlokbiztment\ize\miutanelbasztam\aknakereso\sdl_segedfgvek.c
+	<SDL2/SDL.h>
+	<SDL2/SDL2_gfxPrimitives.h>
+	<SDL2/SDL_ttf.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdbool.h>
+	<string.h>
+	<SDL_image.h>
+	"structok.h"
+	"sdl_segedfgvek.h"
+

@@ -7,7 +7,7 @@
 
 #include "debugmalloc.h"
 
-void ranglistakiir(ListaPalya *eleje,int x,int y,int bombaszam){
+/*void ranglistakiir(ListaPalya *eleje,int x,int y,int bombaszam){
     printf("Ranglista:\n");
     if(eleje==NULL)
         printf("Meg nincsenek eredmenyek.\n");
@@ -24,7 +24,7 @@ void ranglistakiir(ListaPalya *eleje,int x,int y,int bombaszam){
             }
             else printf("Meg nincs ilyen eredmeny\n");
     }
-}
+}*/
 
 static ListaJatekosok* listarendez(ListaJatekosok *eleje, ListaJatekosok *uj){
     if(eleje==NULL){
@@ -51,7 +51,7 @@ static ListaJatekosok* listarendez(ListaJatekosok *eleje, ListaJatekosok *uj){
             }
         }
     }
-return eleje;
+    return eleje;
 }
 
 static ListaPalya* ujlistapalya(int aktx, int akty, int aktbombaszam, int aktido, char *nev){
@@ -95,12 +95,10 @@ static ListaPalya* fajlbol_listaba(FILE *fp, ListaPalya *eleje){
         else
             eleje=vanranglista(eleje, aktx, akty, aktbombaszam, aktido, nev);
     }
-
     return eleje;
 }
 
 void static fajlba_lista(FILE *fp, ListaPalya *eleje){
-
     for(ListaPalya *mozgoPalya=eleje; mozgoPalya!=NULL; mozgoPalya=mozgoPalya->kovpalya){
         int helyezes=0;
         for(ListaJatekosok *mozgoJatekosok=mozgoPalya->jatekosok; mozgoJatekosok!=NULL && helyezes<10; mozgoJatekosok=mozgoJatekosok->kov){
@@ -145,17 +143,12 @@ ListaPalya* ranglistaolv(){
 }
 
 ListaPalya* ranglistabair(ListaPalya *ranglista, int x, int y, int bombaszam, int ido, char *nev){
-    /*char nev[51];
-    printf("Nev (max 50 karakter): ");
-    scanf("%[^\n]", nev);*/
-
     if(ranglista==NULL)
         ranglista=ujlistapalya(x, y, bombaszam, ido, nev);
     else
         ranglista=vanranglista(ranglista, x, y, bombaszam, ido, nev);
 
     return ranglista;
-
 }
 
 void ranglista_ment(ListaPalya *ranglista){

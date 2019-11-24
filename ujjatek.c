@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include "structok.h"
-#include "kirajzol.h"
 #include "jatek_fgvek.h"
 #include "ranglista.h"
 #include <SDL2/SDL.h>
@@ -28,7 +27,6 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
     sdl_init("Aknakereso", &window, &renderer, j1.meretek.szelesseg*20, j1.meretek.magassag*20);
     palyarajzol(renderer, j1);
 
-    //kirajzol(&j1);
     Jeloles aktjel;
     if(jelolsdl(&j1, &aktjel)==1){
         free(j1.palya[0]);
@@ -39,7 +37,6 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
     time(&start);
     bombatgeneral(&j1);
     allapotvaltoztat(aktjel, &j1);
-    //kirajzol(&j1);
     palyarajzol(renderer, j1);
     j1.nyert=nyert_e(&j1);
 
@@ -52,12 +49,9 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
 
         allapotvaltoztat(aktjel, &j1);
         j1.nyert=nyert_e(&j1);
-        //kirajzol(&j1);
         palyarajzol(renderer, j1);
-        //j1.vege=true;
     }
 
-    //kirajzol(&j1);
     palyarajzol(renderer, j1);
     time(&end);
     diff=difftime(end, start);
@@ -73,8 +67,6 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
             return 1;
         }
 
-        //printf("Ugyes vagy!:)\nIdo: %g masodperc\n", diff);
-
         *ranglista=ranglistabair(*ranglista, j1.meretek.szelesseg, j1.meretek.magassag, j1.bombakszama, diff, nev);//történhetne a név megadás után, most a tovább gomb után ment
         ranglista_ment(*ranglista);
 
@@ -89,7 +81,6 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
     int almenu_allapot=jatekvege_almenu(renderer, window);
     if(almenu_allapot==2){
             SDL_DestroyWindow(window);
-            ranglistakiir(*ranglista, j1.meretek.szelesseg, j1.meretek.magassag, j1.bombakszama);
             sdl_init("Ranglista", &window, &renderer, 800, 600);
             ranglistakiir_sdl(*ranglista, j1.meretek.szelesseg, j1.meretek.magassag, j1.bombakszama, renderer);
     }

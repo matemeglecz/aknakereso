@@ -62,6 +62,7 @@ void bombatgeneral(Jatek *j){
             sikeresgen++;
         }
     }
+
     if(sikeresgen==j->bombakszama){  //csak tesztelésre
     for(int y=0; y<j->meretek.magassag; y++){
         for(int x=0; x<j->meretek.szelesseg;x++){
@@ -74,39 +75,6 @@ void bombatgeneral(Jatek *j){
     }
     }
 }
-
-/*Jeloles jelol(Jatek *j){
-    char df;
-    Jeloles aktjeloles;
-
-    printf("Dig/Flag\n");
-    scanf("%s", &df);
-
-    if(df=='d')
-        aktjeloles.jel=dig;
-    else
-        aktjeloles.jel=flag;
-
-    printf("x/y\n");
-    scanf("%d %d", &aktjeloles.x, &aktjeloles.y);
-
-    if(df=='d'){
-        aktjeloles.jel=dig;
-        j->palya[aktjeloles.y-1][aktjeloles.x-1].allapot=nyitott;
-    }
-    else{
-        aktjeloles.jel=flag;
-        j->palya[aktjeloles.y-1][aktjeloles.x-1].allapot=jelolt;
-    }
-    return aktjeloles;
-}*/
-
-/*static void meretbeker(Jatek *j){ //ez lehet nem ide kéne
-    printf("Mekkora legyen a palya?\n");
-    scanf("%d %d", &j->meretek.magassag, &j->meretek.szelesseg);
-    printf("Hany bomba legyen?\n");
-    scanf("%d", &j->bombakszama);
-}*/
 
 static void palyafoglal(Jatek* j){
     j->palya=(Mezoadatok **)malloc(j->meretek.magassag*sizeof(Mezoadatok*));

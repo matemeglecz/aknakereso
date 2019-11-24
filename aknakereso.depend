@@ -626,3 +626,107 @@
 	"structok.h"
 	"sdl_segedfgvek.h"
 
+1574608759 source:c:\projects\codeblocks\aknakereso\aknakereso\jatek_fgvek.c
+	"jatek_fgvek.h"
+	"structok.h"
+	<stdbool.h>
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"debugmalloc.h"
+
+1573494348 c:\projects\codeblocks\aknakereso\aknakereso\jatek_fgvek.h
+	"structok.h"
+
+1574592520 c:\projects\codeblocks\aknakereso\aknakereso\structok.h
+	<stdbool.h>
+	<SDL2/SDL.h>
+
+1573496081 c:\projects\codeblocks\aknakereso\aknakereso\debugmalloc.h
+	<stdbool.h>
+	"debugmalloc-impl.h"
+
+1573496081 c:\projects\codeblocks\aknakereso\aknakereso\debugmalloc-impl.h
+	<stdbool.h>
+	<stddef.h>
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<stdarg.h>
+	<process.h>
+	<unistd.h>
+
+1574609113 source:c:\projects\codeblocks\aknakereso\aknakereso\ranglista.c
+	"ranglista.h"
+	<stdio.h>
+	<stdbool.h>
+	<string.h>
+	<stdlib.h>
+	"structok.h"
+	"debugmalloc.h"
+
+1574609113 c:\projects\codeblocks\aknakereso\aknakereso\ranglista.h
+	"structok.h"
+
+1574609114 source:c:\projects\codeblocks\aknakereso\aknakereso\sdl_fgvek.c
+	<SDL2/SDL.h>
+	<SDL2/SDL2_gfxPrimitives.h>
+	<SDL2/SDL_ttf.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdbool.h>
+	<string.h>
+	<SDL_image.h>
+	"structok.h"
+	"sdl_segedfgvek.h"
+	"debugmalloc.h"
+
+1574602583 c:\projects\codeblocks\aknakereso\aknakereso\sdl_segedfgvek.h
+
+1574609114 source:c:\projects\codeblocks\aknakereso\aknakereso\sdl_segedfgvek.c
+	<SDL2/SDL.h>
+	<SDL2/SDL2_gfxPrimitives.h>
+	<SDL2/SDL_ttf.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdbool.h>
+	<string.h>
+	<SDL_image.h>
+	"structok.h"
+	"sdl_segedfgvek.h"
+
+1574608603 source:c:\projects\codeblocks\aknakereso\aknakereso\main.c
+	<stdio.h>
+	"structok.h"
+	"ujjatek.h"
+	"ranglista.h"
+	"debugmalloc.h"
+	<SDL2/SDL.h>
+	<SDL2/SDL2_gfxPrimitives.h>
+	"sdl_fgvek.h"
+
+1574609114 c:\projects\codeblocks\aknakereso\aknakereso\ujjatek.h
+	<SDL2/SDL.h>
+	<SDL2/SDL2_gfxPrimitives.h>
+
+1574609114 c:\projects\codeblocks\aknakereso\aknakereso\sdl_fgvek.h
+	"structok.h"
+
+1574609135 source:c:\projects\codeblocks\aknakereso\aknakereso\ujjatek.c
+	<stdio.h>
+	<stdbool.h>
+	<stdlib.h>
+	<time.h>
+	"structok.h"
+	"jatek_fgvek.h"
+	"ranglista.h"
+	<SDL2/SDL.h>
+	<SDL2/SDL2_gfxPrimitives.h>
+	"sdl_fgvek.h"
+	<SDL_image.h>
+	"debugmalloc.h"
+
+1574608652 c:\projects\codeblocks\aknakereso\aknakereso\kirajzol.h
+	"structok.h"
+

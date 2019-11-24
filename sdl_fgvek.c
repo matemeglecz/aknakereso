@@ -9,6 +9,8 @@
 #include "structok.h"
 #include "sdl_segedfgvek.h"
 
+#include "debugmalloc.h"
+
 SDL_Color feher = {255, 255, 255};
 SDL_Color fekete = {0, 0, 0};
 SDL_Color piros = {255, 0, 0};
@@ -97,8 +99,6 @@ int almenu(SDL_Renderer *renderer, int *xi, int *yi, int *bombaszami, bool jatek
         SDL_Log("Nem sikerult megnyitni a fontot! %s\n", TTF_GetError());
         exit(1);
     }
-
-    //SDL_Color feher = {255, 255, 255};
 
     rectangleRGBA(renderer, 200, 63, 600, 163, 255, 255, 255, 255);
     szovegir("Könnyű", feher, font, renderer, 800, 0, 73);
@@ -217,7 +217,6 @@ void palyarajzol(SDL_Renderer *renderer, Jatek j){
 
     for(int h=0; h<j.meretek.magassag; h++){
         for(int w=0; w<j.meretek.szelesseg; w++){
-            //SDL_Rect celterulet = { w*MERET, h*MERET, MERET, MERET};
             switch(j.palya[h][w].allapot){
             case jelolt:
                 mezo_rajzol(renderer, mezokep, zaszlokep, w, h);
@@ -232,8 +231,6 @@ void palyarajzol(SDL_Renderer *renderer, Jatek j){
                     mezo_rajzol(renderer, mezokep, j.palya[h][w].nearbomb, w, h);
                 break;
             }
-            //SDL_RenderCopy(renderer, fedettkep, NULL, &celterulet);
-
         }
     }
 
@@ -242,8 +239,6 @@ void palyarajzol(SDL_Renderer *renderer, Jatek j){
 }
 
 int jelolsdl(Jatek *j, Jeloles *aktjeloles){
-
-    //Jeloles aktjeloles;
     SDL_Event ev;
     bool sikereskatt=false;
     while(!sikereskatt){
@@ -302,13 +297,9 @@ int nyert_rajzol(SDL_Renderer *renderer, SDL_Window *window, char *nev, int diff
     }
 
     //kirajzol
-    /* a cel kepre, ezekre a koordinatakra masoljuk */
     SDL_Rect dest = { 0, 0, w, h };
-    /* kepreszlet masolasa */
     SDL_RenderCopy(renderer, konfetti, NULL, &dest);
 
-    //rectangleRGBA(renderer, 200, 125, 600, 225, 255, 255, 255, 255);
-    //rectangleRGBA(renderer, 200, 125, 600, 225, 255, 255, 255, 255);
     szovegir("NYERTÉL", feher, font, renderer, w, 0, h/12);
 
     char szoveg_ido[16]="IDŐ: ";

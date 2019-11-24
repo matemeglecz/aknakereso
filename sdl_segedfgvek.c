@@ -9,7 +9,7 @@
 #include "structok.h"
 #include "sdl_segedfgvek.h"
 
-void szovegir(char *szoveg, SDL_Color szin, TTF_Font *font, SDL_Renderer *renderer, int szeles, int x, int y){
+void szovegir(char *szoveg, SDL_Color szin, TTF_Font *font, SDL_Renderer *renderer, int szeles, int x, int y){ //a szeles a sav szelessege amin belül középre igazítva szeretnénk kiírni, x kezdőpont szélességben, y ugyanígy magasságban
     SDL_Surface *felirat;
     SDL_Texture *felirat_t;
     felirat = TTF_RenderUTF8_Blended(font, szoveg, szin);
@@ -63,7 +63,7 @@ bool input_text(char *dest, size_t hossz, SDL_Rect teglalap, SDL_Color hatter, S
         if (w < maxw) {
             vlineRGBA(renderer, teglalap.x + w + 2, teglalap.y + 2, teglalap.y + teglalap.h - 3, szoveg.r, szoveg.g, szoveg.b, 192);
         }
-        /* megjeleniti a k�pernyon az eddig rajzoltakat */
+        /* megjeleniti a képernyon az eddig rajzoltakat */
         SDL_RenderPresent(renderer);
 
         SDL_Event event;

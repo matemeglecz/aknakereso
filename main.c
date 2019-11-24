@@ -8,8 +8,6 @@
 #include <SDL2/SDL2_gfxPrimitives.h>
 #include "sdl_fgvek.h"
 
-//hahao
-
 int main(int argc, char *argv[]){
     SDL_Window *window;
     SDL_Renderer *renderer;
@@ -34,7 +32,6 @@ int main(int argc, char *argv[]){
 
                 if(ranglista==NULL)
                     ranglista=ranglistaolv();
-                //ranglistakiir(ranglista, x, y, bombaszam);
 
                 if(ranglistakiir_sdl(ranglista, x, y, bombaszam, renderer)==1){
                     felszabPalyalista(ranglista);

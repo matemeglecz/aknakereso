@@ -7,25 +7,6 @@
 
 #include "debugmalloc.h"
 
-/*void ranglistakiir(ListaPalya *eleje,int x,int y,int bombaszam){
-    printf("Ranglista:\n");
-    if(eleje==NULL)
-        printf("Meg nincsenek eredmenyek.\n");
-    else{
-        int helyezes=0;
-        ListaPalya *palyakeres=eleje;
-        while(palyakeres->kovpalya!=NULL && !(palyakeres->x==x && palyakeres->y==y && palyakeres->bombaszam==bombaszam))
-            palyakeres=palyakeres->kovpalya;
-            if(palyakeres->x==x && palyakeres->y==y && palyakeres->bombaszam==bombaszam){
-                for(ListaJatekosok *mozgo=palyakeres->jatekosok; mozgo!=NULL && helyezes<10; mozgo=mozgo->kov){
-                    printf("%2d. %4d mp   %s\n", helyezes+1,mozgo->ido, mozgo->nev);
-                    helyezes++;
-                }
-            }
-            else printf("Meg nincs ilyen eredmeny\n");
-    }
-}*/
-
 static ListaJatekosok* listarendez(ListaJatekosok *eleje, ListaJatekosok *uj){
     if(eleje==NULL){
         eleje=uj;

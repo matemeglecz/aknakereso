@@ -31,7 +31,6 @@ int main(int argc, char *argv[]){
 
                 if(ranglista==NULL)
                     ranglista=ranglistaolv();
-
                 if(ranglistakiir_sdl(ranglista, x, y, bombaszam, renderer)==1){
                     felszabPalyalista(ranglista);
                     return 0;

@@ -526,7 +526,6 @@ int ranglistakiir_sdl(ListaPalya *eleje, int x, int y, int bombaszam, SDL_Render
                     szovegir(idostring, feher, font_h,renderer, 250, 150, (helyezes+3)*h/14);
 
                     szovegir(mozgo->nev, feher, font_h,renderer, 400, 400, (helyezes+3)*h/14);
-                    //printf("%2d. %4d mp   %s\n", helyezes+1,mozgo->ido, mozgo->nev);
                     helyezes++;
                 }
             }

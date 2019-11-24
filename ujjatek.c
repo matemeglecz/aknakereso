@@ -18,16 +18,16 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
     j1.nyert=false;
     time_t start,end;
     double diff;
+    Jeloles aktjel;
 
     if(almenu(renderer, &j1.meretek.szelesseg, &j1.meretek.magassag, &j1.bombakszama)==1)
         return 1;
     SDL_DestroyWindow(window);
-    palyaletrehoz(&j1);
-
     sdl_init("Aknakereso", &window, &renderer, j1.meretek.szelesseg*20, j1.meretek.magassag*20);
+
+    palyaletrehoz(&j1);
     palyarajzol(renderer, j1);
 
-    Jeloles aktjel;
     if(jelolsdl(&j1, &aktjel)==1){
         free(j1.palya[0]);
         free(j1.palya);
@@ -38,7 +38,7 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
     bombatgeneral(&j1);
     allapotvaltoztat(aktjel, &j1);
     palyarajzol(renderer, j1);
-    j1.nyert=nyert_e(&j1);
+    j1.nyert=nyert_e(&j1); //akkor lenne lehetséges ha lehetne 0 bomba de azért a biztonság kedvéért itt van
 
     while(!j1.vege){
         if(jelolsdl(&j1, &aktjel)==1){
@@ -56,9 +56,6 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
     time(&end);
     diff=difftime(end, start);
 
-    if(*ranglista==NULL)
-            *ranglista=ranglistaolv();
-
     if(j1.nyert){
         char nev[21];
         if(nyert_rajzol(renderer, window, nev, diff)==1){
@@ -66,6 +63,9 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
             free(j1.palya);
             return 1;
         }
+
+        if(*ranglista==NULL)
+            *ranglista=ranglistaolv();
 
         *ranglista=ranglistabair(*ranglista, j1.meretek.szelesseg, j1.meretek.magassag, j1.bombakszama, diff, nev);//történhetne a név megadás után, most a tovább gomb után ment
         ranglista_ment(*ranglista);
@@ -83,6 +83,8 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
     if(almenu_allapot==2){
             SDL_DestroyWindow(window);
             sdl_init("Ranglista", &window, &renderer, 800, 600);
+            if(*ranglista==NULL)
+                *ranglista=ranglistaolv();
             ranglistakiir_sdl(*ranglista, j1.meretek.szelesseg, j1.meretek.magassag, j1.bombakszama, renderer);
     }
     else if(almenu_allapot==1){

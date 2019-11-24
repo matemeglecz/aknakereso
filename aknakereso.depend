@@ -669,7 +669,7 @@
 1574609113 c:\projects\codeblocks\aknakereso\aknakereso\ranglista.h
 	"structok.h"
 
-1574630766 source:c:\projects\codeblocks\aknakereso\aknakereso\sdl_fgvek.c
+1574632752 source:c:\projects\codeblocks\aknakereso\aknakereso\sdl_fgvek.c
 	<SDL2/SDL.h>
 	<SDL2/SDL2_gfxPrimitives.h>
 	<SDL2/SDL_ttf.h>
@@ -697,7 +697,7 @@
 	"sdl_segedfgvek.h"
 	"debugmalloc.h"
 
-1574625590 source:c:\projects\codeblocks\aknakereso\aknakereso\main.c
+1574632752 source:c:\projects\codeblocks\aknakereso\aknakereso\main.c
 	<stdio.h>
 	"structok.h"
 	"ujjatek.h"
@@ -711,10 +711,10 @@
 	<SDL2/SDL.h>
 	<SDL2/SDL2_gfxPrimitives.h>
 
-1574609114 c:\projects\codeblocks\aknakereso\aknakereso\sdl_fgvek.h
+1574632752 c:\projects\codeblocks\aknakereso\aknakereso\sdl_fgvek.h
 	"structok.h"
 
-1574625870 source:c:\projects\codeblocks\aknakereso\aknakereso\ujjatek.c
+1574632752 source:c:\projects\codeblocks\aknakereso\aknakereso\ujjatek.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>

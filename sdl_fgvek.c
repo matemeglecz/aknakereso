@@ -109,7 +109,7 @@ int fomenu(SDL_Renderer *renderer, SDL_Window *window){
         }
 }
 
-int almenu(SDL_Renderer *renderer, int *xi, int *yi, int *bombaszami, bool jatekbol){
+int almenu(SDL_Renderer *renderer, int *xi, int *yi, int *bombaszami){
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
@@ -165,101 +165,51 @@ int almenu(SDL_Renderer *renderer, int *xi, int *yi, int *bombaszami, bool jatek
                 SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
                 SDL_RenderClear(renderer);//az almenü nem törlődik ki, ezért kell
                 int beolv_allapot=0;
+                SDL_DisplayMode DM;
+                SDL_GetDesktopDisplayMode(0, &DM);
 
-                if(jatekbol){
-                    SDL_DisplayMode DM;
-                    SDL_GetDesktopDisplayMode(0, &DM);
-
-                    if(beolvas(renderer, xi, "X")==1){
-                        TTF_CloseFont(font);
-                        return 1;
-                    }
-
-                    while(*xi > DM.w/20 || *xi < 6 || beolv_allapot==2){   //6x6 a min határ mert annál kisebb ablakot nem lehet úgy nyitni hogy fel legyen teljesen töltve
-                        szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
-                        beolv_allapot=beolvas(renderer, xi, "X");
-                        if(beolv_allapot==1){
-                            TTF_CloseFont(font);
-                            return 1;
-                        }
-                    }
-
-                    if(beolvas(renderer, yi, "Y")==1){
-                        TTF_CloseFont(font);
-                        return 1;
-                    }
-                    while(*yi > DM.h/20 || *yi < 6 || beolv_allapot==2){
-                        szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
-                        beolv_allapot=beolvas(renderer, yi, "Y");
-                        if(beolv_allapot==1){
-                            TTF_CloseFont(font);
-                            return 1;
-                        }
-                    }
-
-                    if(beolvas(renderer, bombaszami, "Bombaszám")==1){
-                        TTF_CloseFont(font);
-                        return 1;
-                    }
-                    while(*bombaszami > (*xi)*(*yi) || *bombaszami<=0 || beolv_allapot==2){ //nem lehet 0, mert ha betűt kap akkor is 0-ra konvertálja, meg egyébként sincs sok ételme
-                        szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
-                        beolv_allapot=beolvas(renderer, bombaszami, "Bombaszám");
-                        if(beolv_allapot==1){
-                            TTF_CloseFont(font);
-                            return 1;
-                        }
-                    }
+                if(beolvas(renderer, xi, "X")==1){
+                    TTF_CloseFont(font);
+                    return 1;
                 }
-                else{//nincsenek kezelve a betuk
+                while(*xi > DM.w/20 || *xi < 6 || beolv_allapot==2){   //6x6 a min határ mert annál kisebb ablakot nem lehet úgy nyitni hogy fel legyen teljesen töltve
+                    szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
                     beolv_allapot=beolvas(renderer, xi, "X");
                     if(beolv_allapot==1){
                         TTF_CloseFont(font);
                         return 1;
                     }
+                }
 
-                    while(beolv_allapot==2){
-                        szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
-                        beolv_allapot=beolvas(renderer, xi, "X");
-                        if(beolv_allapot==1){
-                            TTF_CloseFont(font);
-                            return 1;
-                        }
-                    }
-
+                if(beolvas(renderer, yi, "Y")==1){
+                    TTF_CloseFont(font);
+                    return 1;
+                }
+                while(*yi > DM.h/20 || *yi < 6 || beolv_allapot==2){
+                    szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
                     beolv_allapot=beolvas(renderer, yi, "Y");
                     if(beolv_allapot==1){
                         TTF_CloseFont(font);
                         return 1;
                     }
+                }
 
-                    while(beolv_allapot==2){
-                        szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
-                        beolv_allapot=beolvas(renderer, yi, "Y");
-                        if(beolv_allapot==1){
-                            TTF_CloseFont(font);
-                            return 1;
-                        }
-                    }
-
+                if(beolvas(renderer, bombaszami, "Bombaszám")==1){
+                    TTF_CloseFont(font);
+                    return 1;
+                }
+                while(*bombaszami > (*xi)*(*yi) || *bombaszami<=0 || beolv_allapot==2){ //nem lehet 0, mert ha betűt kap akkor is 0-ra konvertálja, meg egyébként sincs sok ételme
+                    szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
                     beolv_allapot=beolvas(renderer, bombaszami, "Bombaszám");
                     if(beolv_allapot==1){
                         TTF_CloseFont(font);
                         return 1;
                     }
-
-                    while(beolv_allapot==2 || *bombaszami> *xi*(*yi)){
-                        szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
-                        beolv_allapot=beolvas(renderer, bombaszami, "Bombaszám");
-                        if(beolv_allapot==1){
-                            TTF_CloseFont(font);
-                            return 1;
-                        }
                 }
-                sikereskatt=true;}
-                break;
+            sikereskatt=true;}
+            break;
             }
         }
-    }
     TTF_CloseFont(font);
     return 0;
 }

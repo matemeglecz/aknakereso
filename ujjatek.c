@@ -19,7 +19,7 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
     time_t start,end;
     double diff;
 
-    if(almenu(renderer, &j1.meretek.szelesseg, &j1.meretek.magassag, &j1.bombakszama, true)==1)
+    if(almenu(renderer, &j1.meretek.szelesseg, &j1.meretek.magassag, &j1.bombakszama)==1)
         return 1;
     SDL_DestroyWindow(window);
     palyaletrehoz(&j1);

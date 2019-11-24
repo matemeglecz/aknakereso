@@ -5,7 +5,7 @@
 void sdl_init(char const *felirat, SDL_Window **pwindow, SDL_Renderer **prenderer, int szeles, int magas);
 int jelolsdl(Jatek *j, Jeloles *aktjeloles);
 void palyarajzol(SDL_Renderer *renderer, Jatek j);
-int almenu(SDL_Renderer *renderer, int *xi, int *yi, int *bombaszami, bool jatekbol);
+int almenu(SDL_Renderer *renderer, int *xi, int *yi, int *bombaszami);
 int fomenu(SDL_Renderer *renderer, SDL_Window *window);
 int nyert_rajzol(SDL_Renderer *renderer, SDL_Window *window, char *nev, int diff);
 int jatekvege_almenu(SDL_Renderer *renderer, SDL_Window *window);

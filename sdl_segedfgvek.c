@@ -160,7 +160,6 @@ int beolvas(SDL_Renderer *renderer, int *adat, char *szoveg){
     if(!sikeres_beolv) return 1;
     if(strlen(bemenet)==0) return 2;
     for(int i=0; i<strlen(bemenet); i++){
-        printf("%s", bemenet);
         if(bemenet[i]<'0' || bemenet[i]>'9')
             return 2;
     }

@@ -24,7 +24,7 @@ int main(int argc, char *argv[]){
                 }
                 break;
             case 2:
-                if(almenu(renderer, &x, &y, &bombaszam, false)==1){
+                if(almenu(renderer, &x, &y, &bombaszam)==1){
                     felszabPalyalista(ranglista);
                     return 0;
                 }

@@ -76,7 +76,8 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
             free(j1.palya);
             return 1;
     }
-
+    SDL_DestroyWindow(window);
+    sdl_init("Aknakereso", &window, &renderer, 800, 600);
 
     int almenu_allapot=jatekvege_almenu(renderer, window);
     if(almenu_allapot==2){

@@ -9,6 +9,8 @@
 #include "structok.h"
 #include "sdl_segedfgvek.h"
 
+#include "debugmalloc.h"
+
 void szovegir(char *szoveg, SDL_Color szin, TTF_Font *font, SDL_Renderer *renderer, int szeles, int x, int y){ //a szeles a sav szelessege amin belül középre igazítva szeretnénk kiírni, x kezdőpont szélességben, y ugyanígy magasságban
     SDL_Surface *felirat;
     SDL_Texture *felirat_t;
@@ -150,16 +152,21 @@ int beolvas(SDL_Renderer *renderer, int *adat, char *szoveg){
     szovegir(szoveg , feher, fontbetuk, renderer, 800, 0, 75);
     SDL_Color fekete = {0, 0, 0};
 
-    bool sikeres_beolv=input_text(bemenet, 10, xteglalap, feher, fekete, fontszam, renderer);
-    *adat=atoi(bemenet);
-
+    bool sikeres_beolv=input_text(bemenet, 9, xteglalap, feher, fekete, fontszam, renderer);
     TTF_CloseFont(fontszam);
     TTF_CloseFont(fontbetuk);
     SDL_RenderClear(renderer);
 
-    if(sikeres_beolv)
-        return 0;
-    else return 1;
+    if(!sikeres_beolv) return 1;
+    if(strlen(bemenet)==0) return 2;
+    for(int i=0; i<strlen(bemenet); i++){
+        printf("%s", bemenet);
+        if(bemenet[i]<'0' || bemenet[i]>'9')
+            return 2;
+    }
+    *adat=atoi(bemenet);
+
+    return 0;
 }
 
 enum { MERET = 20 };

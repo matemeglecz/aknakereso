@@ -12,7 +12,6 @@ int main(int argc, char *argv[]){
     SDL_Window *window;
     SDL_Renderer *renderer;
     ListaPalya *ranglista=NULL;
-
     int x, y, bombaszam;
 
     while(1){

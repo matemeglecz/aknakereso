@@ -12,28 +12,9 @@
 3	3	3	10	wow
 3	3	0	90	asd
 2	2	3	10	nyertem hahahahahaa
-8	8	10	0	ASD
-8	8	10	0	bji
-8	8	10	0	bjio
-8	8	10	0	jtd
-8	8	10	0	dg
-8	8	10	1	ez jo
-8	8	10	1	uff
-8	8	10	1	asd
-8	8	10	1	adf
-8	8	10	1	hih
-16	16	40	1	oks
-16	16	40	1	haoá
 16	16	40	218	teszt
 16	16	40	255	yeeeeeeeeeeeeeeeeet
 16	16	40	335	lol nyertem
-30	16	99	0	lehetne meg jobb he 
-30	16	99	1	ez mar tetszik
-30	16	99	1	lpé
-30	16	99	1	fadf
-30	16	99	2	vujhb
-30	16	99	5	cfg
-30	16	99	5	jhig
 10	10	2	4	árvíztűrő
 30	30	0	0	tükörfúrógép
 100	100	0	1	haha
@@ -47,3 +28,38 @@
 40	3	4	2	adf
 5	5	1	2	jeeeee
 10	10	3	5	gfsd
+8	8	10	28	Mate voltam kösz
+8	8	10	36	adfg
+8	8	10	56	jeeeee
+8	8	10	57	áőőőő
+8	8	10	59	szupi
+8	8	10	62	zzzzzzzzzz
+8	8	10	67	jeeee
+10	23	10	12	buh
+6	6	3	7	jó lesz
+6	6	3	9	jó ez
+6	6	3	10	mate
+6	6	3	10	hb
+6	6	3	16	majdnem jó
+6	15	3	4	jeeeee
+6	15	7	19	fuuuu
+6	14	5	7	fuck yeah
+6	6	2	1	most jó végre
+6	6	2	3	ehem
+6	6	2	3	belefér
+6	6	2	3	najó ez király
+6	6	2	4	khm
+6	6	2	7	jeee
+6	6	2	8	nem elég jó
+6	6	2	18	etgb
+9	9	2	2	fgb
+6	15	6	11	egf
+9	8	2	2	sfv
+7	7	2	3	fg
+6	15	2	2	oks
+6	15	2	4	dgh
+6	6	5	18	jóe z
+6	6	1	1	gsa
+6	6	1	1	nem leszez jop
+6	6	1	4	dfgb
+7	40	2	4	még szép

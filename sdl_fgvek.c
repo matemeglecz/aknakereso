@@ -106,6 +106,32 @@ int fomenu(SDL_Renderer *renderer, SDL_Window *window){
         }
 }
 
+int static palyaadatok_beolvas(SDL_Renderer *renderer, TTF_Font *font, int *adat, int felsokorl, int alsokorl, char *adatnev, char *hibasok, char *hibakeves){
+    int beolv_allapot=beolvas(renderer, adat, adatnev);
+
+    if(beolv_allapot==1){
+        TTF_CloseFont(font);
+        return 1;
+    }
+
+    while(*adat > felsokorl || *adat < alsokorl || beolv_allapot==2){
+        if(beolv_allapot==2) //ez felsőbbrendő, mert ha karakter mennek be bemenetként azt 0-ra váltódik, ezért kiírná a az alsókorlát alatti hibaüzenetet is
+            szovegir("Nem lehet betű a bemenetben.", piros, font, renderer, 800, 0, 520);
+        else{
+            if(*adat < felsokorl) szovegir(hibakeves, piros, font, renderer, 800, 0, 520);
+            if(*adat > alsokorl) szovegir(hibasok, piros, font, renderer, 800, 0, 520);
+        }
+        szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
+        beolv_allapot=beolvas(renderer, adat, adatnev);
+        if(beolv_allapot==1){
+            TTF_CloseFont(font);
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
 int almenu(SDL_Renderer *renderer, int *xi, int *yi, int *bombaszami){
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
@@ -161,60 +187,17 @@ int almenu(SDL_Renderer *renderer, int *xi, int *yi, int *bombaszami){
             if(x<=600 && x >= 200 && y>=437 && y <= 537 && ev.button.button==SDL_BUTTON_LEFT){
                 SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
                 SDL_RenderClear(renderer);//az almenü nem törlődik ki, ezért kell
-                int beolv_allapot=0;
                 SDL_DisplayMode DM;
                 SDL_GetDesktopDisplayMode(0, &DM);
 
-                //6x6 a min határ mert annál kisebb ablakot nem lehet úgy nyitni hogy fel legyen teljesen töltve
-                if(beolvas(renderer, xi, "X")==1){
-                    TTF_CloseFont(font);
+                if(palyaadatok_beolvas(renderer, font, xi, DM.w/20, 6, "X", "Túl nagy a méret.", "Minimum 6 széles.")==1 ||
+                   palyaadatok_beolvas(renderer, font, yi, DM.h/20, 6, "Y", "Túl nagy a méret.", "Minimum 6 széles.")==1 ||
+                   palyaadatok_beolvas(renderer, font, bombaszami, (*xi)*(*yi)-1, 1, "Bombaszám", "Túl sok bomba.", "Minimum 1 bomba.")==1)
                     return 1;
-                }
 
-                while(*xi > DM.w/20 || *xi < 6 || beolv_allapot==2){
-                    if(*xi < 6) szovegir("Min 6", piros, font, renderer, 800, 0, 520);
-                    if(*xi > DM.w/20) szovegir("Túl nagy a méret.", piros, font, renderer, 800, 0, 520);
-                    szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
-                    beolv_allapot=beolvas(renderer, xi, "X");
-                    if(beolv_allapot==1){
-                        TTF_CloseFont(font);
-                        return 1;
-                    }
-                }
-
-                if(beolvas(renderer, yi, "Y")==1){
-                    TTF_CloseFont(font);
-                    return 1;
-                }
-
-                while(*yi > DM.h/20 || *yi < 6 || beolv_allapot==2){
-                    if(*yi < 6) szovegir("Min 6", piros, font, renderer, 800, 0, 520);
-                    if(*yi > DM.h/20) szovegir("Túl nagy a méret.", piros, font, renderer, 800, 0, 520);
-                    szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
-                    beolv_allapot=beolvas(renderer, yi, "Y");
-                    if(beolv_allapot==1){
-                        TTF_CloseFont(font);
-                        return 1;
-                    }
-                }
-
-                if(beolvas(renderer, bombaszami, "Bombaszám")==1){
-                    TTF_CloseFont(font);
-                    return 1;
-                }
-                //nem lehet 0, mert ha betűt kap akkor is 0-ra konvertálja, meg egyébként sincs sok ételme
-                //w*h-1 nek kell lennie mert különben nem lehet pályátgenerálni úgy hogy elsőre ne legyen bomba
-                while(*bombaszami > (*xi)*(*yi)-1 || *bombaszami<=0 || beolv_allapot==2){
-                    if(*bombaszami > *xi*(*yi)-1) szovegir("Túl sok bomba.", piros, font, renderer, 800, 0, 520);
-                    szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
-                    beolv_allapot=beolvas(renderer, bombaszami, "Bombaszám");
-                    if(beolv_allapot==1){
-                        TTF_CloseFont(font);
-                        return 1;
-                    }
-                }
-            sikereskatt=true;}
-            break;
+                sikereskatt=true;
+            }
+                break;
             }
         }
     TTF_CloseFont(font);

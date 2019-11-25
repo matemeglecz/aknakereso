@@ -669,7 +669,7 @@
 1574609113 c:\projects\codeblocks\aknakereso\aknakereso\ranglista.h
 	"structok.h"
 
-1574710283 source:c:\projects\codeblocks\aknakereso\aknakereso\sdl_fgvek.c
+1574713073 source:c:\projects\codeblocks\aknakereso\aknakereso\sdl_fgvek.c
 	<SDL2/SDL.h>
 	<SDL2/SDL2_gfxPrimitives.h>
 	<SDL2/SDL_ttf.h>

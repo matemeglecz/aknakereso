@@ -318,7 +318,10 @@ int nyert_rajzol(SDL_Renderer *renderer, SDL_Window *window, char *nev, int diff
     strcat(szoveg_ido, " másodperc");
     szovegir(szoveg_ido, sarga, font, renderer, w, 0, teglalap.y+teglalap.h+h/6);
 
-    input_text(nev, 20, teglalap, fekete, sarga, font, renderer);
+    if(!input_text(nev, 20, teglalap, fekete, sarga, font, renderer)){
+        TTF_CloseFont(font);
+        return 1;
+    }
     while(strlen(nev)==0){    //nem lehet kilépni a név bekérésnél
         TTF_Init();
         TTF_Font *font_hiba = TTF_OpenFont("LiberationSerif-Regular.ttf", 2*fontmeret/3);
@@ -327,7 +330,11 @@ int nyert_rajzol(SDL_Renderer *renderer, SDL_Window *window, char *nev, int diff
             exit(1);
         }
         szovegir("Min 1 karakter", piros, font_hiba, renderer, w, 0, teglalap.y+teglalap.h);
-        input_text(nev, 20, teglalap, fekete, sarga, font, renderer);
+        if(!input_text(nev, 20, teglalap, fekete, sarga, font, renderer)){
+            TTF_CloseFont(font);
+            TTF_CloseFont(font_hiba);
+            return 1;
+        }
         TTF_CloseFont(font_hiba);
     }
 
@@ -422,8 +429,6 @@ int veszt_rajzol(SDL_Renderer *renderer, SDL_Window *window){
         exit(1);
     }
 
-    //szovegir("BUMM:(", fekete, font, renderer, w, 0, h/12);
-
     SDL_Texture *robbanas= IMG_LoadTexture(renderer, "robbanas.png");
     if (robbanas == NULL) {
         SDL_Log("Nem nyithato meg a kepfajl: %s", IMG_GetError());
@@ -453,7 +458,6 @@ int veszt_rajzol(SDL_Renderer *renderer, SDL_Window *window){
     SDL_DestroyTexture(robbanas);
 
     SDL_Event ev;
-    //bool sikereskatt=false;
     while(1){
         SDL_WaitEvent(&ev);
         int x, y;

@@ -12,7 +12,7 @@ void static felderit(int y, int x, Jatek *j){
         return;
     for(int w=x-1; w<=x+1; w++){
         for(int h=y-1; h<=y+1;h++){
-            if(!(h<0 || h>j->meretek.magassag-1 || w<0 || w>j->meretek.szelesseg-1) && j->palya[h][w].bomba_e == nembomba && j->palya[h][w].allapot==fedett){
+            if(!(h<0 || h>j->meretek.magassag-1 || w<0 || w>j->meretek.szelesseg-1) && j->palya[h][w].bomba_e == nembomba && j->palya[h][w].allapot!=nyitott){
                 if(j->palya[h][w].nearbomb==0){
                     j->palya[h][w].allapot=nyitott;
                     felderit(h, w, j);
@@ -53,17 +53,17 @@ void static mezoknovelese(Jatek *j,int y,int x) {
 
 void bombatgeneral(Jatek *j){
     int sikeresgen=0;
-    while(sikeresgen<j->bombakszama){
+    while(sikeresgen < j->bombakszama){
         int randommagassag=rand()%j->meretek.magassag;
         int randomszelesseg=rand()%j->meretek.szelesseg;
-        if(j->palya[randommagassag][randomszelesseg].bomba_e!=bomba && j->palya[randommagassag][randomszelesseg].allapot!=nyitott){
+        if(j->palya[randommagassag][randomszelesseg].bomba_e!=bomba && j->palya[randommagassag][randomszelesseg].allapot!=nyitott){ //nyitott vizsgálat az első kettintás miatt kell
             j->palya[randommagassag][randomszelesseg].bomba_e = bomba;
             mezoknovelese(j, randommagassag, randomszelesseg);
             sikeresgen++;
         }
     }
 
-    if(sikeresgen==j->bombakszama){  //csak tesztel�sre
+    if(sikeresgen==j->bombakszama){  //csak tesztelésre
     for(int y=0; y<j->meretek.magassag; y++){
         for(int x=0; x<j->meretek.szelesseg;x++){
            if(j->palya[y][x].bomba_e==bomba)

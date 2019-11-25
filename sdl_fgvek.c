@@ -165,53 +165,53 @@ int almenu(SDL_Renderer *renderer, int *xi, int *yi, int *bombaszami){
                 SDL_DisplayMode DM;
                 SDL_GetDesktopDisplayMode(0, &DM);
 
+                //6x6 a min határ mert annál kisebb ablakot nem lehet úgy nyitni hogy fel legyen teljesen töltve
                 if(beolvas(renderer, xi, "X")==1){
                     TTF_CloseFont(font);
                     return 1;
                 }
 
-                if(*xi < 6) szovegir("Min 6", piros, font, renderer, 800, 0, 520);
-
-                while(*xi > DM.w/20 || *xi < 6 || beolv_allapot==2){   //6x6 a min határ mert annál kisebb ablakot nem lehet úgy nyitni hogy fel legyen teljesen töltve
+                while(*xi > DM.w/20 || *xi < 6 || beolv_allapot==2){
+                    if(*xi < 6) szovegir("Min 6", piros, font, renderer, 800, 0, 520);
+                    if(*xi > DM.w/20) szovegir("Túl nagy a méret.", piros, font, renderer, 800, 0, 520);
                     szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
                     beolv_allapot=beolvas(renderer, xi, "X");
                     if(beolv_allapot==1){
                         TTF_CloseFont(font);
                         return 1;
                     }
-                    if(*xi < 6) szovegir("Min 6", piros, font, renderer, 800, 0, 520);
                 }
 
                 if(beolvas(renderer, yi, "Y")==1){
                     TTF_CloseFont(font);
                     return 1;
                 }
-                if(*yi < 6) szovegir("Min 6", piros, font, renderer, 800, 0, 520);
 
                 while(*yi > DM.h/20 || *yi < 6 || beolv_allapot==2){
+                    if(*yi < 6) szovegir("Min 6", piros, font, renderer, 800, 0, 520);
+                    if(*yi > DM.h/20) szovegir("Túl nagy a méret.", piros, font, renderer, 800, 0, 520);
                     szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
                     beolv_allapot=beolvas(renderer, yi, "Y");
                     if(beolv_allapot==1){
                         TTF_CloseFont(font);
                         return 1;
                     }
-                    if(*yi < 6) szovegir("Min 6", piros, font, renderer, 800, 0, 520);
                 }
 
                 if(beolvas(renderer, bombaszami, "Bombaszám")==1){
                     TTF_CloseFont(font);
                     return 1;
                 }
-                if(*bombaszami > *xi*(*yi)) szovegir("Túl sok bomba.", piros, font, renderer, 800, 0, 520);
-
-                while(*bombaszami > (*xi)*(*yi) || *bombaszami<=0 || beolv_allapot==2){ //nem lehet 0, mert ha betűt kap akkor is 0-ra konvertálja, meg egyébként sincs sok ételme
+                //nem lehet 0, mert ha betűt kap akkor is 0-ra konvertálja, meg egyébként sincs sok ételme
+                //w*h-1 nek kell lennie mert különben nem lehet pályátgenerálni úgy hogy elsőre ne legyen bomba
+                while(*bombaszami > (*xi)*(*yi)-1 || *bombaszami<=0 || beolv_allapot==2){
+                    if(*bombaszami > *xi*(*yi)-1) szovegir("Túl sok bomba.", piros, font, renderer, 800, 0, 520);
                     szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
                     beolv_allapot=beolvas(renderer, bombaszami, "Bombaszám");
                     if(beolv_allapot==1){
                         TTF_CloseFont(font);
                         return 1;
                     }
-                    if(*bombaszami > *xi*(*yi)) szovegir("Túl sok bomba.", piros, font, renderer, 800, 0, 520);
                 }
             sikereskatt=true;}
             break;

@@ -34,6 +34,15 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
         return 1;
     }
 
+    while(aktjel.jel!=dig){ //csak ásásra generálódik a pálya, a flagek nem érdekesek
+       palyarajzol(renderer, j1);
+       if(jelolsdl(&j1, &aktjel)==1){
+            free(j1.palya[0]);
+            free(j1.palya);
+            return 1;
+        }
+    }
+
     time(&start);
     bombatgeneral(&j1);
     allapotvaltoztat(aktjel, &j1);

@@ -31,6 +31,7 @@
 8	8	10	28	Mate voltam kösz
 8	8	10	36	adfg
 8	8	10	56	jeeeee
+8	8	10	56	péló
 8	8	10	57	áőőőő
 8	8	10	59	szupi
 8	8	10	62	zzzzzzzzzz
@@ -61,5 +62,13 @@
 6	6	5	18	jóe z
 6	6	1	1	gsa
 6	6	1	1	nem leszez jop
+6	6	1	1	kk
+6	6	1	1	erf
+6	6	1	2	h
+6	6	1	2	a
+6	6	1	3	a
+6	6	1	3	af
 6	6	1	4	dfgb
+6	6	1	4	a
 7	40	2	4	még szép
+60	40	1	18	Petiiiiiii megnyert

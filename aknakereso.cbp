@@ -52,12 +52,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="jatek_fgvek.h" />
-		<Unit filename="kirajzol.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="kirajzol.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
 		<Unit filename="konfetti.png" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />

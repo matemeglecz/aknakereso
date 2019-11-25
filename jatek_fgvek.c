@@ -100,7 +100,6 @@ void palyaletrehoz(Jatek *j){
 }
 
 bool nyert_e(Jatek *j){
-
     for(int x=0; x<j->meretek.szelesseg; x++){
         for(int y=0; y<j->meretek.magassag; y++){
             if((j->palya[y][x].bomba_e==nembomba && j->palya[y][x].allapot!=nyitott )||

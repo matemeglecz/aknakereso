@@ -42,9 +42,9 @@ int fomenu(SDL_Renderer *renderer, SDL_Window *window){
     SDL_RenderClear(renderer);
 
     const int w=800;
-    //const int h=600;
+    const int h=600;
 
-    /*SDL_Texture *menukep= IMG_LoadTexture(renderer, "menukep.png");
+    SDL_Texture *menukep= IMG_LoadTexture(renderer, "menukep.png");
     if (menukep == NULL) {
         SDL_Log("Nem nyithato meg a kepfajl: %s", IMG_GetError());
         exit(1);
@@ -54,7 +54,7 @@ int fomenu(SDL_Renderer *renderer, SDL_Window *window){
     SDL_Rect dest = { 0, 0, w, h };
     SDL_RenderCopy(renderer, menukep, NULL, &dest);
 
-    SDL_DestroyTexture(menukep);*/
+    SDL_DestroyTexture(menukep);
 
     TTF_Init();
     TTF_Font *font = TTF_OpenFont("LiberationSerif-Regular.ttf", 60);
@@ -79,9 +79,6 @@ int fomenu(SDL_Renderer *renderer, SDL_Window *window){
     szovegir("AKNAKERESŐ", feher, font, renderer, w, 0, 50);
 
     TTF_CloseFont(font);
-
-
-    /* az elvegzett rajzolasok a kepernyore */
 
     SDL_RenderPresent(renderer);
 
@@ -172,6 +169,9 @@ int almenu(SDL_Renderer *renderer, int *xi, int *yi, int *bombaszami){
                     TTF_CloseFont(font);
                     return 1;
                 }
+
+                if(*xi < 6) szovegir("Min 6", piros, font, renderer, 800, 0, 520);
+
                 while(*xi > DM.w/20 || *xi < 6 || beolv_allapot==2){   //6x6 a min határ mert annál kisebb ablakot nem lehet úgy nyitni hogy fel legyen teljesen töltve
                     szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
                     beolv_allapot=beolvas(renderer, xi, "X");
@@ -179,12 +179,15 @@ int almenu(SDL_Renderer *renderer, int *xi, int *yi, int *bombaszami){
                         TTF_CloseFont(font);
                         return 1;
                     }
+                    if(*xi < 6) szovegir("Min 6", piros, font, renderer, 800, 0, 520);
                 }
 
                 if(beolvas(renderer, yi, "Y")==1){
                     TTF_CloseFont(font);
                     return 1;
                 }
+                if(*yi < 6) szovegir("Min 6", piros, font, renderer, 800, 0, 520);
+
                 while(*yi > DM.h/20 || *yi < 6 || beolv_allapot==2){
                     szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
                     beolv_allapot=beolvas(renderer, yi, "Y");
@@ -192,12 +195,15 @@ int almenu(SDL_Renderer *renderer, int *xi, int *yi, int *bombaszami){
                         TTF_CloseFont(font);
                         return 1;
                     }
+                    if(*yi < 6) szovegir("Min 6", piros, font, renderer, 800, 0, 520);
                 }
 
                 if(beolvas(renderer, bombaszami, "Bombaszám")==1){
                     TTF_CloseFont(font);
                     return 1;
                 }
+                if(*bombaszami > *xi*(*yi)) szovegir("Túl sok bomba.", piros, font, renderer, 800, 0, 520);
+
                 while(*bombaszami > (*xi)*(*yi) || *bombaszami<=0 || beolv_allapot==2){ //nem lehet 0, mert ha betűt kap akkor is 0-ra konvertálja, meg egyébként sincs sok ételme
                     szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
                     beolv_allapot=beolvas(renderer, bombaszami, "Bombaszám");
@@ -205,6 +211,7 @@ int almenu(SDL_Renderer *renderer, int *xi, int *yi, int *bombaszami){
                         TTF_CloseFont(font);
                         return 1;
                     }
+                    if(*bombaszami > *xi*(*yi)) szovegir("Túl sok bomba.", piros, font, renderer, 800, 0, 520);
                 }
             sikereskatt=true;}
             break;
@@ -329,12 +336,22 @@ int nyert_rajzol(SDL_Renderer *renderer, SDL_Window *window, char *nev, int diff
     szovegir(szoveg_ido, sarga, font, renderer, w, 0, teglalap.y+teglalap.h+h/6);
 
     input_text(nev, 20, teglalap, fekete, sarga, font, renderer);
+    while(strlen(nev)==0){    //nem lehet kilépni a név bekérésnél
+        TTF_Init();
+        TTF_Font *font_hiba = TTF_OpenFont("LiberationSerif-Regular.ttf", 2*fontmeret/3);
+        if(!font){
+            SDL_Log("Nem sikerult megnyitni a fontot! %s\n", TTF_GetError());
+            exit(1);
+        }
+        szovegir("Min 1 karakter", piros, font_hiba, renderer, w, 0, teglalap.y+teglalap.h);
+        input_text(nev, 20, teglalap, fekete, sarga, font, renderer);
+        TTF_CloseFont(font_hiba);
+    }
 
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
-
     SDL_RenderFillRect(renderer, &teglalap);
-    rectangleRGBA(renderer, teglalap.x, teglalap.y, teglalap.x+teglalap.w, teglalap.y+teglalap.h, 255, 255, 255, 255);
+    rectangleRGBA(renderer, teglalap.x, teglalap.y, teglalap.x+teglalap.w, teglalap.y+teglalap.h, 255, 255, 0, 255);
     szovegir("TOVÁBB", sarga, font, renderer, teglalap.w, teglalap.x, teglalap.y+(teglalap.h-fontmeret)/2);
     SDL_RenderPresent(renderer);
 
@@ -363,7 +380,6 @@ int nyert_rajzol(SDL_Renderer *renderer, SDL_Window *window, char *nev, int diff
 int jatekvege_almenu(SDL_Renderer *renderer, SDL_Window *window){
     int w, h;
     SDL_GetWindowSize(window, &w, &h);
-
 
     TTF_Init();
     TTF_Font *font = TTF_OpenFont("LiberationSerif-Regular.ttf", 2*h/10);
@@ -436,7 +452,6 @@ int veszt_rajzol(SDL_Renderer *renderer, SDL_Window *window){
     SDL_Rect dest = { 0, 0, w, h };
     /* kepreszlet masolasa */
     SDL_RenderCopy(renderer, robbanas, NULL, &dest);
-
 
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
@@ -561,7 +576,6 @@ int ranglistakiir_sdl(ListaPalya *eleje, int x, int y, int bombaszam, SDL_Render
                 sikereskatt=true;}
         }
     }
-
     TTF_CloseFont(font_h);
     return 0;
 }

@@ -17,10 +17,8 @@ void static felderit(int y, int x, Jatek *j){
                     j->palya[h][w].allapot=nyitott;
                     felderit(h, w, j);
                 }
-                else if(j->palya[y][x].nearbomb==0){
+                else if(j->palya[y][x].nearbomb==0){ //0-ás terület levő számok felderítése
                     j->palya[h][w].allapot=nyitott;
-                    /*if(j->palya[h][w].nearbomb==0)
-                        felderit(h, w, j);*/
                 }
             }
         }
@@ -99,7 +97,7 @@ void palyaletrehoz(Jatek *j){
     lenullaz(j);
 }
 
-bool nyert_e(Jatek *j){
+bool nyert_e(Jatek *j){//akkor nyert ha minden mező fel van derítve ami nem bomba és minden bomba be van jelölve
     for(int x=0; x<j->meretek.szelesseg; x++){
         for(int y=0; y<j->meretek.magassag; y++){
             if((j->palya[y][x].bomba_e==nembomba && j->palya[y][x].allapot!=nyitott )||

@@ -20,7 +20,7 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
     double diff;
     Jeloles aktjel;
 
-    if(almenu(renderer, &j1.meretek.szelesseg, &j1.meretek.magassag, &j1.bombakszama)==1)
+    if(almenu(renderer, &j1.meretek.szelesseg, &j1.meretek.magassag, &j1.bombakszama)==1)//kilépés ha 1
         return 1;
     SDL_DestroyWindow(window);
     sdl_init("Aknakereso", &window, &renderer, j1.meretek.szelesseg*20, j1.meretek.magassag*20);
@@ -28,13 +28,14 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
     palyaletrehoz(&j1);
     palyarajzol(renderer, j1);
 
-    if(jelolsdl(&j1, &aktjel)==1){
+    //első jelölés
+    if(jelolsdl(&j1, &aktjel)==1){//kilépés ha 1
         free(j1.palya[0]);
         free(j1.palya);
         return 1;
     }
 
-    while(aktjel.jel!=dig){ //csak �s�sra gener�l�dik a p�lya, a flagek nem �rdekesek
+    while(aktjel.jel!=dig){ //csak ásásra generálódik a pálya, a flagek nem érdekesek
        palyarajzol(renderer, j1);
        if(jelolsdl(&j1, &aktjel)==1){
             free(j1.palya[0]);
@@ -43,17 +44,17 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
         }
     }
 
-    time(&start);
+    time(&start);//idő az első ásással indul
     bombatgeneral(&j1);
     allapotvaltoztat(aktjel, &j1);
     palyarajzol(renderer, j1);
-    j1.nyert=nyert_e(&j1); //akkor lenne lehets�ges ha lehetne 0 bomba de az�rt a biztons�g kedv��rt itt van
+    j1.nyert=nyert_e(&j1); //akkor lenne lehetséges ha lehetne 0 bomba de azért a biztonság kedvéért itt van
 
     while(!j1.vege){
-        if(jelolsdl(&j1, &aktjel)==1){
-        free(j1.palya[0]);
-        free(j1.palya);
-        return 1;
+        if(jelolsdl(&j1, &aktjel)==1){//kilépés ha 1
+            free(j1.palya[0]);
+            free(j1.palya);
+            return 1;
         }
 
         allapotvaltoztat(aktjel, &j1);
@@ -67,7 +68,7 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
 
     if(j1.nyert){
         char nev[21];
-        if(nyert_rajzol(renderer, window, nev, diff)==1){
+        if(nyert_rajzol(renderer, window, nev, diff)==1){//kilépés ha 1
             free(j1.palya[0]);
             free(j1.palya);
             return 1;
@@ -76,11 +77,11 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
         if(*ranglista==NULL)
             *ranglista=ranglistaolv();
 
-        *ranglista=ranglistabair(*ranglista, j1.meretek.szelesseg, j1.meretek.magassag, j1.bombakszama, diff, nev);//t�rt�nhetne a n�v megad�s ut�n, most a tov�bb gomb ut�n ment
+        *ranglista=ranglistabair(*ranglista, j1.meretek.szelesseg, j1.meretek.magassag, j1.bombakszama, diff, nev);//történhetne a név megadás után, most a tovább gomb után ment
         ranglista_ment(*ranglista);
 
     }
-    else if(veszt_rajzol(renderer, window)==1){
+    else if(veszt_rajzol(renderer, window)==1){//kilépés ha 1
             free(j1.palya[0]);
             free(j1.palya);
             return 1;
@@ -94,9 +95,13 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
             sdl_init("Ranglista", &window, &renderer, 800, 600);
             if(*ranglista==NULL)
                 *ranglista=ranglistaolv();
-            ranglistakiir_sdl(*ranglista, j1.meretek.szelesseg, j1.meretek.magassag, j1.bombakszama, renderer);
+            if(ranglistakiir_sdl(*ranglista, j1.meretek.szelesseg, j1.meretek.magassag, j1.bombakszama, renderer)==1){//kilépés ha 1
+                free(j1.palya[0]);
+                free(j1.palya);
+                return 1;
+            }
     }
-    else if(almenu_allapot==1){
+    else if(almenu_allapot==1){//kilépés ha 1
             free(j1.palya[0]);
             free(j1.palya);
             return 1;

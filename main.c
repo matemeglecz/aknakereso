@@ -17,13 +17,13 @@ int main(int argc, char *argv[]){
     while(1){
         sdl_init("Aknakereso", &window, &renderer, 800, 600);
         switch(fomenu(renderer, window)){
-            case 1:
-                if(ujjatek(&ranglista, renderer, window)==1){
+            case 1://ujjatek
+                if(ujjatek(&ranglista, renderer, window)==1){//kilépés
                     felszabPalyalista(ranglista);
                     return 0;
                 }
                 break;
-            case 2:
+            case 2://ranglista
                 if(almenu(renderer, &x, &y, &bombaszam)==1){
                     felszabPalyalista(ranglista);
                     return 0;
@@ -31,13 +31,13 @@ int main(int argc, char *argv[]){
 
                 if(ranglista==NULL)
                     ranglista=ranglistaolv();
-                if(ranglistakiir_sdl(ranglista, x, y, bombaszam, renderer)==1){
+                if(ranglistakiir_sdl(ranglista, x, y, bombaszam, renderer)==1){//kilépés
                     felszabPalyalista(ranglista);
                     return 0;
                 }
                 SDL_DestroyWindow(window);
                 break;
-            case 3:
+            case 3://kilépés
                 SDL_Quit();
                 felszabPalyalista(ranglista);
                 return 0;

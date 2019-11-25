@@ -60,7 +60,7 @@ static ListaPalya* vanranglista(ListaPalya *eleje, int aktx, int akty, int aktbo
         strcpy(ujjatekos->nev, nev);
         mozgoPalya->jatekosok=listarendez(mozgoPalya->jatekosok, ujjatekos);
     }
-    else{
+    else{ //ha még nincs ilyen pályamérethez tartozó lista
         mozgoPalya->kovpalya=ujlistapalya(aktx, akty, aktbombaszam, aktido, nev);
     }
     return eleje;
@@ -81,7 +81,7 @@ static ListaPalya* fajlbol_listaba(FILE *fp, ListaPalya *eleje){
 
 void static fajlba_lista(FILE *fp, ListaPalya *eleje){
     for(ListaPalya *mozgoPalya=eleje; mozgoPalya!=NULL; mozgoPalya=mozgoPalya->kovpalya){
-        int helyezes=0;
+        int helyezes=0;// mindig csak a top 10 lesz visszamentve, a többi úgyis jelentéktelen
         for(ListaJatekosok *mozgoJatekosok=mozgoPalya->jatekosok; mozgoJatekosok!=NULL && helyezes<10; mozgoJatekosok=mozgoJatekosok->kov){
             fprintf(fp, "%d\t%d\t%d\t%d\t%s\n", mozgoPalya->x, mozgoPalya->y, mozgoPalya->bombaszam, mozgoJatekosok->ido, mozgoJatekosok->nev);
             helyezes++;

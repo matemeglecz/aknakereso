@@ -23,12 +23,15 @@ typedef struct Palyameret{
     int szelesseg;
 }Palyameret;
 
+typedef enum Jatekallapot{
+    jatekban, nyert, vesztett
+}Jatekallapot;
+
 typedef struct Jatek{
     Palyameret meretek;
     Mezoadatok **palya;
     int bombakszama;
-    bool vege;
-    bool nyert;
+    Jatekallapot jatek_allapot;
 }Jatek;
 
 typedef enum Jeltype{flag, dig}Jeltype;

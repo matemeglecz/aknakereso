@@ -31,7 +31,7 @@ void allapotvaltoztat(Jeloles aktjeloles, Jatek *j){
     const int x=(aktjeloles.x);
     if(aktjeloles.jel==dig){
         if(j->palya[y][x].bomba_e==bomba){
-            j->vege=true;
+            j->jatek_allapot=vesztett;
         }
         else{
             felderit(y, x, j);
@@ -85,14 +85,14 @@ void palyaletrehoz(Jatek *j){
     lenullaz(j);
 }
 
-bool nyert_e(Jatek *j){//akkor nyert ha minden mező fel van derítve ami nem bomba és minden bomba be van jelölve
+void nyert_e(Jatek *j){//akkor nyert ha minden mező fel van derítve ami nem bomba és minden bomba be van jelölve
     for(int x=0; x<j->meretek.szelesseg; x++){
         for(int y=0; y<j->meretek.magassag; y++){
             if((j->palya[y][x].bomba_e==nembomba && j->palya[y][x].allapot!=nyitott )||
                (j->palya[y][x].bomba_e==bomba && j->palya[y][x].allapot!=jelolt))
-                return false;
+                return;//játékban maradunk
         }
     }
-    j->vege=true;
-    return true;
+    j->jatek_allapot=nyert;
+    return;
 }

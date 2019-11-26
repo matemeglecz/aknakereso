@@ -4,8 +4,7 @@
 
 void allapotvaltoztat(Jeloles aktjeloles, Jatek *j);
 void bombatgeneral(Jatek *j);
-Jeloles jelol(Jatek *j);
 void palyaletrehoz(Jatek *j);
-bool nyert_e(Jatek *j);
+void nyert_e(Jatek *j);
 
 #endif // JATEK_FGVEK_H_INCLUDED

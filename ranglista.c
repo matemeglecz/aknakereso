@@ -37,9 +37,9 @@ static ListaJatekosok* listarendez(ListaJatekosok *eleje, ListaJatekosok *uj){
 
 static ListaPalya* ujlistapalya(int aktx, int akty, int aktbombaszam, int aktido, char *nev){
     ListaPalya *ujpalya=(ListaPalya*)malloc(sizeof(ListaPalya));
-    ujpalya->x=aktx;
-    ujpalya->y=akty;
-    ujpalya->bombaszam=aktbombaszam;
+    ujpalya->palya_parameterek.szelesseg=aktx;
+    ujpalya->palya_parameterek.magassag=akty;
+    ujpalya->palya_parameterek.bombaszam=aktbombaszam;
     ujpalya->kovpalya=NULL;
     ujpalya->jatekosok=(ListaJatekosok*)malloc(sizeof(ListaJatekosok));
     ujpalya->jatekosok->ido=aktido;
@@ -50,11 +50,11 @@ static ListaPalya* ujlistapalya(int aktx, int akty, int aktbombaszam, int aktido
 
 static ListaPalya* vanranglista(ListaPalya *eleje, int aktx, int akty, int aktbombaszam, int aktido, char *nev){
     ListaPalya* mozgoPalya=eleje;
-    while(!(mozgoPalya->x == aktx && mozgoPalya->y == akty && mozgoPalya->bombaszam == aktbombaszam) && mozgoPalya->kovpalya != NULL){
+    while(!(mozgoPalya->palya_parameterek.szelesseg == aktx && mozgoPalya->palya_parameterek.magassag == akty && mozgoPalya->palya_parameterek.bombaszam == aktbombaszam) && mozgoPalya->kovpalya != NULL){
         mozgoPalya=mozgoPalya->kovpalya;
     }
 
-    if(mozgoPalya->x==aktx && mozgoPalya->y==akty && mozgoPalya->bombaszam==aktbombaszam){
+    if(mozgoPalya->palya_parameterek.szelesseg==aktx && mozgoPalya->palya_parameterek.magassag==akty && mozgoPalya->palya_parameterek.bombaszam==aktbombaszam){
         ListaJatekosok *ujjatekos=(ListaJatekosok *)malloc(sizeof(ListaJatekosok));
         ujjatekos->ido=aktido;
         strcpy(ujjatekos->nev, nev);
@@ -83,7 +83,7 @@ void static fajlba_lista(FILE *fp, ListaPalya *eleje){
     for(ListaPalya *mozgoPalya=eleje; mozgoPalya!=NULL; mozgoPalya=mozgoPalya->kovpalya){
         int helyezes=0;// mindig csak a top 10 lesz visszamentve, a többi úgyis jelentéktelen
         for(ListaJatekosok *mozgoJatekosok=mozgoPalya->jatekosok; mozgoJatekosok!=NULL && helyezes<10; mozgoJatekosok=mozgoJatekosok->kov){
-            fprintf(fp, "%d\t%d\t%d\t%d\t%s\n", mozgoPalya->x, mozgoPalya->y, mozgoPalya->bombaszam, mozgoJatekosok->ido, mozgoJatekosok->nev);
+            fprintf(fp, "%d\t%d\t%d\t%d\t%s\n", mozgoPalya->palya_parameterek.szelesseg, mozgoPalya->palya_parameterek.magassag, mozgoPalya->palya_parameterek.bombaszam, mozgoJatekosok->ido, mozgoJatekosok->nev);
             helyezes++;
         }
     }

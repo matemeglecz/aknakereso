@@ -2,11 +2,12 @@
 #include "structok.h"
 #include "ujjatek.h"
 #include "ranglista.h"
+#include "sdl_fgvek.h"
 #include "debugmalloc.h"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
-#include "sdl_fgvek.h"
+
 
 int main(int argc, char *argv[]){
     SDL_Window *window;

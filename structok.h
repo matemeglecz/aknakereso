@@ -18,19 +18,19 @@ typedef struct Mezoadatok{
     int nearbomb;
 }Mezoadatok;
 
-typedef struct Palyameret{
+typedef struct Palyaparameterek{
     int magassag;
     int szelesseg;
-}Palyameret;
+    int bombaszam;
+}Palyaparameterek;
 
 typedef enum Jatekallapot{
     jatekban, nyert, vesztett
 }Jatekallapot;
 
 typedef struct Jatek{
-    Palyameret meretek;
+    Palyaparameterek parameterek;
     Mezoadatok **palya;
-    int bombakszama;
     Jatekallapot jatek_allapot;
 }Jatek;
 
@@ -48,7 +48,8 @@ typedef struct ListaJatekosok{
 }ListaJatekosok;
 
 typedef struct ListaPalya{
-    int x, y, bombaszam;
+    //int x, y, bombaszam;
+    Palyaparameterek palya_parameterek;
     ListaJatekosok *jatekosok;
     struct ListaPalya *kovpalya;
 }ListaPalya;

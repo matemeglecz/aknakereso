@@ -216,8 +216,8 @@ void palyarajzol(SDL_Renderer *renderer, Jatek j){
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
-    for(int h=0; h<j.meretek.magassag; h++){
-        for(int w=0; w<j.meretek.szelesseg; w++){
+    for(int h=0; h<j.parameterek.magassag; h++){
+        for(int w=0; w<j.parameterek.szelesseg; w++){
             switch(j.palya[h][w].allapot){
             case jelolt:
                 mezo_rajzol(renderer, mezokep, zaszlokep, w, h);
@@ -520,9 +520,9 @@ int ranglistakiir_sdl(ListaPalya *eleje, int x, int y, int bombaszam, SDL_Render
     else{
         int helyezes=0;
         ListaPalya *palyakeres=eleje;
-        while(palyakeres->kovpalya!=NULL && !(palyakeres->x==x && palyakeres->y==y && palyakeres->bombaszam==bombaszam))
+        while(palyakeres->kovpalya!=NULL && !(palyakeres->palya_parameterek.szelesseg==x && palyakeres->palya_parameterek.magassag==y && palyakeres->palya_parameterek.bombaszam==bombaszam))
             palyakeres=palyakeres->kovpalya;
-            if(palyakeres->x==x && palyakeres->y==y && palyakeres->bombaszam==bombaszam){
+            if(palyakeres->palya_parameterek.szelesseg==x && palyakeres->palya_parameterek.magassag==y && palyakeres->palya_parameterek.bombaszam==bombaszam){
                 for(ListaJatekosok *mozgo=palyakeres->jatekosok; mozgo!=NULL && helyezes<10; mozgo=mozgo->kov){
                     char helyezesstring[4];
                     itoa(helyezes+1, helyezesstring, 10);

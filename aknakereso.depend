@@ -626,7 +626,7 @@
 	"structok.h"
 	"sdl_segedfgvek.h"
 
-1574798398 source:c:\projects\codeblocks\aknakereso\aknakereso\jatek_fgvek.c
+1574799361 source:c:\projects\codeblocks\aknakereso\aknakereso\jatek_fgvek.c
 	"jatek_fgvek.h"
 	"structok.h"
 	<stdbool.h>
@@ -638,7 +638,7 @@
 1574798734 c:\projects\codeblocks\aknakereso\aknakereso\jatek_fgvek.h
 	"structok.h"
 
-1574798734 c:\projects\codeblocks\aknakereso\aknakereso\structok.h
+1574800199 c:\projects\codeblocks\aknakereso\aknakereso\structok.h
 	<stdbool.h>
 	<SDL2/SDL.h>
 
@@ -657,7 +657,7 @@
 	<process.h>
 	<unistd.h>
 
-1574717306 source:c:\projects\codeblocks\aknakereso\aknakereso\ranglista.c
+1574800309 source:c:\projects\codeblocks\aknakereso\aknakereso\ranglista.c
 	"ranglista.h"
 	<stdio.h>
 	<stdbool.h>
@@ -666,10 +666,10 @@
 	"structok.h"
 	"debugmalloc.h"
 
-1574609113 c:\projects\codeblocks\aknakereso\aknakereso\ranglista.h
+1574803308 c:\projects\codeblocks\aknakereso\aknakereso\ranglista.h
 	"structok.h"
 
-1574795308 source:c:\projects\codeblocks\aknakereso\aknakereso\sdl_fgvek.c
+1574800363 source:c:\projects\codeblocks\aknakereso\aknakereso\sdl_fgvek.c
 	<SDL2/SDL.h>
 	<SDL2/SDL2_gfxPrimitives.h>
 	<SDL2/SDL_ttf.h>
@@ -697,15 +697,15 @@
 	"sdl_segedfgvek.h"
 	"debugmalloc.h"
 
-1574716137 source:c:\projects\codeblocks\aknakereso\aknakereso\main.c
+1574801362 source:c:\projects\codeblocks\aknakereso\aknakereso\main.c
 	<stdio.h>
 	"structok.h"
 	"ujjatek.h"
 	"ranglista.h"
+	"sdl_fgvek.h"
 	"debugmalloc.h"
 	<SDL2/SDL.h>
 	<SDL2/SDL2_gfxPrimitives.h>
-	"sdl_fgvek.h"
 
 1574609114 c:\projects\codeblocks\aknakereso\aknakereso\ujjatek.h
 	<SDL2/SDL.h>
@@ -714,7 +714,7 @@
 1574632752 c:\projects\codeblocks\aknakereso\aknakereso\sdl_fgvek.h
 	"structok.h"
 
-1574798421 source:c:\projects\codeblocks\aknakereso\aknakereso\ujjatek.c
+1574799419 source:c:\projects\codeblocks\aknakereso\aknakereso\ujjatek.c
 	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>

@@ -19,10 +19,10 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
     double diff;
     Jeloles aktjel;
 
-    if(almenu(renderer, &j.meretek.szelesseg, &j.meretek.magassag, &j.bombakszama)==1)//kilépés ha 1
+    if(almenu(renderer, &j.parameterek.szelesseg, &j.parameterek.magassag, &j.parameterek.bombaszam)==1)//kilépés ha 1
         return 1;
     SDL_DestroyWindow(window);
-    sdl_init("Aknakereso", &window, &renderer, j.meretek.szelesseg*20, j.meretek.magassag*20);
+    sdl_init("Aknakereso", &window, &renderer, j.parameterek.szelesseg*20, j.parameterek.magassag*20);
 
     palyaletrehoz(&j);
     palyarajzol(renderer, j);
@@ -76,7 +76,7 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
         if(*ranglista==NULL)
             *ranglista=ranglistaolv();
 
-        *ranglista=ranglistabair(*ranglista, j.meretek.szelesseg, j.meretek.magassag, j.bombakszama, diff, nev);//történhetne a név megadás után, most a tovább gomb után ment
+        *ranglista=ranglistabair(*ranglista, j.parameterek.szelesseg, j.parameterek.magassag, j.parameterek.bombaszam, diff, nev);//történhetne a név megadás után, most a tovább gomb után ment
         ranglista_ment(*ranglista);
 
     }
@@ -94,7 +94,7 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
             sdl_init("Ranglista", &window, &renderer, 800, 600);
             if(*ranglista==NULL)
                 *ranglista=ranglistaolv();
-            if(ranglistakiir_sdl(*ranglista, j.meretek.szelesseg, j.meretek.magassag, j.bombakszama, renderer)==1){//kilépés ha 1
+            if(ranglistakiir_sdl(*ranglista, j.parameterek.szelesseg, j.parameterek.magassag, j.parameterek.bombaszam, renderer)==1){//kilépés ha 1
                 free(j.palya[0]);
                 free(j.palya);
                 return 1;

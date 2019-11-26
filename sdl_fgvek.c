@@ -83,12 +83,11 @@ int fomenu(SDL_Renderer *renderer, SDL_Window *window){
     SDL_RenderPresent(renderer);
 
     SDL_Event ev;
+    int x, y;
     while(1){
         SDL_WaitEvent(&ev);
-        int x, y;
         switch(ev.type){
         case SDL_QUIT:
-            //SDL_Quit();
             return 3;
         case SDL_MOUSEBUTTONDOWN:
             x=ev.button.x;
@@ -107,7 +106,7 @@ int fomenu(SDL_Renderer *renderer, SDL_Window *window){
 }
 
 int static palyaadatok_beolvas(SDL_Renderer *renderer, TTF_Font *font, int *adat, int felsokorl, int alsokorl, char *adatnev, char *hibasok, char *hibakeves){
-    int beolv_allapot=beolvas(renderer, adat, adatnev);
+    int beolv_allapot=beolvas_rajzol(renderer, adat, adatnev);
 
     if(beolv_allapot==1){
         TTF_CloseFont(font);
@@ -122,7 +121,7 @@ int static palyaadatok_beolvas(SDL_Renderer *renderer, TTF_Font *font, int *adat
             if(*adat > alsokorl) szovegir(hibasok, piros, font, renderer, 800, 0, 520);
         }
         szovegir("Hibás bemenet.", piros, font, renderer, 800, 0, 450);
-        beolv_allapot=beolvas(renderer, adat, adatnev);
+        beolv_allapot=beolvas_rajzol(renderer, adat, adatnev);
         if(beolv_allapot==1){
             TTF_CloseFont(font);
             return 1;
@@ -155,10 +154,10 @@ int almenu(SDL_Renderer *renderer, int *xi, int *yi, int *bombaszami){
     SDL_RenderPresent(renderer);
 
     SDL_Event ev;
+    int x, y;
     bool sikereskatt=false;
     while(!sikereskatt){
         SDL_WaitEvent(&ev);
-        int x, y;
         switch(ev.type){
         case SDL_QUIT:
             SDL_Quit();
@@ -190,10 +189,13 @@ int almenu(SDL_Renderer *renderer, int *xi, int *yi, int *bombaszami){
                 SDL_DisplayMode DM;
                 SDL_GetDesktopDisplayMode(0, &DM);
 
+                //ha bármelyik 1 akkor a következők nem lesznek már megnézve
                 if(palyaadatok_beolvas(renderer, font, xi, DM.w/20, 6, "X", "Túl nagy a méret.", "Minimum 6 széles.")==1 ||
-                   palyaadatok_beolvas(renderer, font, yi, DM.h/20, 6, "Y", "Túl nagy a méret.", "Minimum 6 széles.")==1 ||
-                   palyaadatok_beolvas(renderer, font, bombaszami, (*xi)*(*yi)-1, 1, "Bombaszám", "Túl sok bomba.", "Minimum 1 bomba.")==1)
+                   palyaadatok_beolvas(renderer, font, yi, DM.h/20-4, 6, "Y", "Túl nagy a méret.", "Minimum 6 széles.")==1 || //-4, hogy az ablak fejléce kiférjen a képernyőre, illetve hogy a képernyő alján a taskbar alá ne lógjon be az ablak
+                   palyaadatok_beolvas(renderer, font, bombaszami, (*xi)*(*yi)-1, 1, "Bombaszám", "Túl sok bomba.", "Minimum 1 bomba.")==1){
+                    TTF_CloseFont(font);
                     return 1;
+                }
 
                 sikereskatt=true;
             }
@@ -238,6 +240,7 @@ void palyarajzol(SDL_Renderer *renderer, Jatek j){
 }
 
 int jelolsdl(Jatek *j, Jeloles *aktjeloles){
+    //jeloles
     SDL_Event ev;
     bool sikereskatt=false;
     while(!sikereskatt){
@@ -261,6 +264,7 @@ int jelolsdl(Jatek *j, Jeloles *aktjeloles){
             }
         }
 
+    //állapotváltoztatás
     if(aktjeloles->jel==dig){
         j->palya[aktjeloles->y][aktjeloles->x].allapot=nyitott;
     }
@@ -350,9 +354,9 @@ int nyert_rajzol(SDL_Renderer *renderer, SDL_Window *window, char *nev, int diff
     SDL_DestroyTexture(konfetti);
 
     SDL_Event ev;
+    int x, y;
     while(1){
         SDL_WaitEvent(&ev);
-        int x, y;
         switch(ev.type){
         case SDL_QUIT:
             SDL_Quit();
@@ -391,9 +395,9 @@ int jatekvege_almenu(SDL_Renderer *renderer, SDL_Window *window){
     TTF_CloseFont(font);
 
     SDL_Event ev;
+    int x, y;
     while(1){
         SDL_WaitEvent(&ev);
-        int x, y;
         switch(ev.type){
         case SDL_QUIT:
             SDL_Quit();
@@ -460,9 +464,9 @@ int veszt_rajzol(SDL_Renderer *renderer, SDL_Window *window){
     SDL_DestroyTexture(robbanas);
 
     SDL_Event ev;
+    int x, y;
     while(1){
         SDL_WaitEvent(&ev);
-        int x, y;
         switch(ev.type){
         case SDL_QUIT:
             SDL_Quit();
@@ -510,6 +514,7 @@ int ranglistakiir_sdl(ListaPalya *eleje, int x, int y, int bombaszam, SDL_Render
     else
         szovegir("Egyéb méretek", feher, font_h, renderer, w, 0, h/7);
 
+    //eredmények kiírása
     if(eleje==NULL)
         szovegir("Még nincsenek eredmények.", feher, font_h, renderer, w, 0, h/2);
     else{
@@ -550,19 +555,19 @@ int ranglistakiir_sdl(ListaPalya *eleje, int x, int y, int bombaszam, SDL_Render
     TTF_CloseFont(font_h);
 
     SDL_Event ev;
+    int xkatt, ykatt;
     while(1){
         SDL_WaitEvent(&ev);
-        int x, y;
         switch(ev.type){
         case SDL_QUIT:
             SDL_Quit();
             return 1;
         case SDL_MOUSEBUTTONDOWN:
-            x=ev.button.x;
-            y=ev.button.y;
+            xkatt=ev.button.x;
+            ykatt=ev.button.y;
             break;
         case SDL_MOUSEBUTTONUP:
-            if(x<= teglalap.x+teglalap.w && x >= teglalap.x && y>=teglalap.y && y <= teglalap.y+teglalap.h && ev.button.button==SDL_BUTTON_LEFT){
+            if(xkatt<= teglalap.x+teglalap.w && xkatt >= teglalap.x && ykatt>=teglalap.y && ykatt <= teglalap.y+teglalap.h && ev.button.button==SDL_BUTTON_LEFT){
                 return 0;}
         }
     }

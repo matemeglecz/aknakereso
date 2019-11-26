@@ -26,7 +26,7 @@ void szovegir(char *szoveg, SDL_Color szin, TTF_Font *font, SDL_Renderer *render
     SDL_DestroyTexture(felirat_t);
 }
 
-bool input_text(char *dest, size_t hossz, SDL_Rect teglalap, SDL_Color hatter, SDL_Color szoveg, TTF_Font *font, SDL_Renderer *renderer) {
+bool input_text(char *dest, size_t hossz, SDL_Rect teglalap, SDL_Color hatter, SDL_Color szoveg, TTF_Font *font, SDL_Renderer *renderer) {//infoc-ről van
     /* Ez tartalmazza az aktualis szerkesztest */
     char composition[SDL_TEXTEDITINGEVENT_TEXT_SIZE];
     composition[0] = '\0';
@@ -129,7 +129,7 @@ bool input_text(char *dest, size_t hossz, SDL_Rect teglalap, SDL_Color hatter, S
     return enter;
 }
 
-int beolvas(SDL_Renderer *renderer, int *adat, char *szoveg){
+int beolvas_rajzol(SDL_Renderer *renderer, int *adat, char *szoveg){
     char bemenet[10];
 
     TTF_Init();

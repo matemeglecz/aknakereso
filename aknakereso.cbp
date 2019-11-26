@@ -56,6 +56,7 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="menukep.png" />
 		<Unit filename="mezok.png" />
 		<Unit filename="ranglista.c">
 			<Option compilerVar="CC" />

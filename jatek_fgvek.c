@@ -60,18 +60,6 @@ void bombatgeneral(Jatek *j){
             sikeresgen++;
         }
     }
-
-    if(sikeresgen==j->bombakszama){  //csak tesztelésre
-    for(int y=0; y<j->meretek.magassag; y++){
-        for(int x=0; x<j->meretek.szelesseg;x++){
-           if(j->palya[y][x].bomba_e==bomba)
-                printf("X ");
-           else
-                printf("%d ", j->palya[y][x].nearbomb);
-        }
-        printf("\n");
-    }
-    }
 }
 
 static void palyafoglal(Jatek* j){

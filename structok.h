@@ -48,7 +48,6 @@ typedef struct ListaJatekosok{
 }ListaJatekosok;
 
 typedef struct ListaPalya{
-    //int x, y, bombaszam;
     Palyaparameterek palya_parameterek;
     ListaJatekosok *jatekosok;
     struct ListaPalya *kovpalya;

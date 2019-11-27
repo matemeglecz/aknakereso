@@ -682,9 +682,9 @@
 	"sdl_segedfgvek.h"
 	"debugmalloc.h"
 
-1574858326 c:\projects\codeblocks\aknakereso\aknakereso\sdl_segedfgvek.h
+1574890811 c:\projects\codeblocks\aknakereso\aknakereso\sdl_segedfgvek.h
 
-1574793619 source:c:\projects\codeblocks\aknakereso\aknakereso\sdl_segedfgvek.c
+1574892133 source:c:\projects\codeblocks\aknakereso\aknakereso\sdl_segedfgvek.c
 	<SDL2/SDL.h>
 	<SDL2/SDL2_gfxPrimitives.h>
 	<SDL2/SDL_ttf.h>

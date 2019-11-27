@@ -277,33 +277,6 @@ int jelolsdl(Jatek *j, Jeloles *aktjeloles){
 
 }
 
-int tovabb_gomb(SDL_Renderer *renderer, SDL_Rect teglalap, TTF_Font *font, int fontmeret, SDL_Color szin){
-    SDL_RenderFillRect(renderer, &teglalap);
-    rectangleRGBA(renderer, teglalap.x, teglalap.y, teglalap.x+teglalap.w, teglalap.y+teglalap.h, szin.r, szin.g, szin.b, 255);
-    szovegir("TOVÁBB", szin, font, renderer, teglalap.w, teglalap.x, teglalap.y+(teglalap.h-fontmeret)/2);
-    SDL_RenderPresent(renderer);
-
-    TTF_CloseFont(font);
-
-    SDL_Event ev;
-    int x, y;
-    while(1){
-        SDL_WaitEvent(&ev);
-        switch(ev.type){
-        case SDL_QUIT:
-            SDL_Quit();
-            return 1;
-        case SDL_MOUSEBUTTONDOWN:
-            x=ev.button.x;
-            y=ev.button.y;
-            break;
-        case SDL_MOUSEBUTTONUP:
-            if(x<= teglalap.x+teglalap.w && x >= teglalap.x && y>=teglalap.y && y <= teglalap.y+teglalap.h && ev.button.button==SDL_BUTTON_LEFT)
-                return 0;
-        }
-    }
-}
-
 int nyert_rajzol(SDL_Renderer *renderer, SDL_Window *window, char *nev, int diff){
     int w, h;
     SDL_GetWindowSize(window, &w, &h);
@@ -345,7 +318,12 @@ int nyert_rajzol(SDL_Renderer *renderer, SDL_Window *window, char *nev, int diff
 
     char szoveg_ido[16];
     char ido[5+1]; //egy napnál csak nem fut tovább a játék
-    strcpy(szoveg_ido, itoa(diff, ido, 10));
+
+    if(diff<=99999)
+        strcpy(szoveg_ido, itoa(diff, ido, 10));
+    else
+        strcpy(ido, "99999"); //ha mégis megtörténne
+
     strcat(szoveg_ido, " másodperc");
     szovegir(szoveg_ido, sarga, font, renderer, w, 0, teglalap.y+teglalap.h+h/6);
 
@@ -374,33 +352,6 @@ int nyert_rajzol(SDL_Renderer *renderer, SDL_Window *window, char *nev, int diff
     SDL_DestroyTexture(konfetti);
 
     return tovabb_gomb(renderer, teglalap, font, fontmeret, sarga);
-
-
-    /*SDL_RenderFillRect(renderer, &teglalap);
-    rectangleRGBA(renderer, teglalap.x, teglalap.y, teglalap.x+teglalap.w, teglalap.y+teglalap.h, 255, 255, 0, 255);
-    szovegir("TOVÁBB", sarga, font, renderer, teglalap.w, teglalap.x, teglalap.y+(teglalap.h-fontmeret)/2);
-    SDL_RenderPresent(renderer);
-
-    TTF_CloseFont(font);
-
-
-    SDL_Event ev;
-    int x, y;
-    while(1){
-        SDL_WaitEvent(&ev);
-        switch(ev.type){
-        case SDL_QUIT:
-            SDL_Quit();
-            return 1;
-        case SDL_MOUSEBUTTONDOWN:
-            x=ev.button.x;
-            y=ev.button.y;
-            break;
-        case SDL_MOUSEBUTTONUP:
-            if(x<= teglalap.x+teglalap.w && x >= teglalap.x && y>=teglalap.y && y <= teglalap.y+teglalap.h && ev.button.button==SDL_BUTTON_LEFT)
-                return 0;
-        }
-    }*/
 }
 
 int jatekvege_almenu(SDL_Renderer *renderer, SDL_Window *window){
@@ -488,31 +439,6 @@ int veszt_rajzol(SDL_Renderer *renderer, SDL_Window *window){
 
     SDL_DestroyTexture(robbanas);
 
-    /*SDL_RenderFillRect(renderer, &teglalap);
-    rectangleRGBA(renderer, teglalap.x, teglalap.y, teglalap.x+teglalap.w, teglalap.y+teglalap.h, 255, 255, 255, 255);
-    szovegir("TOVÁBB", feher, font, renderer, teglalap.w, teglalap.x, teglalap.y+(teglalap.h-fontmeret)/2);
-    SDL_RenderPresent(renderer);
-
-    TTF_CloseFont(font);
-
-
-    SDL_Event ev;
-    int x, y;
-    while(1){
-        SDL_WaitEvent(&ev);
-        switch(ev.type){
-        case SDL_QUIT:
-            SDL_Quit();
-            return 1;
-        case SDL_MOUSEBUTTONDOWN:
-            x=ev.button.x;
-            y=ev.button.y;
-            break;
-        case SDL_MOUSEBUTTONUP:
-            if(x<= teglalap.x+teglalap.w && x >= teglalap.x && y>=teglalap.y && y <= teglalap.y+teglalap.h && ev.button.button==SDL_BUTTON_LEFT)
-                return 0;
-        }
-    }*/
     return tovabb_gomb(renderer, teglalap, font, fontmeret, feher);
 }
 
@@ -582,28 +508,5 @@ int ranglistakiir_sdl(ListaPalya *eleje, int x, int y, int bombaszam, SDL_Render
     teglalap.w=w/4;
     teglalap.h=h/14;
 
-    /*SDL_RenderFillRect(renderer, &teglalap);
-    rectangleRGBA(renderer, teglalap.x, teglalap.y, teglalap.x+teglalap.w, teglalap.y+teglalap.h, 255, 255, 255, 255);
-    szovegir("TOVÁBB", feher, font_h, renderer, teglalap.w, teglalap.x, teglalap.y);
-    SDL_RenderPresent(renderer);
-    TTF_CloseFont(font_h);
-
-    SDL_Event ev;
-    int xkatt, ykatt;
-    while(1){
-        SDL_WaitEvent(&ev);
-        switch(ev.type){
-        case SDL_QUIT:
-            SDL_Quit();
-            return 1;
-        case SDL_MOUSEBUTTONDOWN:
-            xkatt=ev.button.x;
-            ykatt=ev.button.y;
-            break;
-        case SDL_MOUSEBUTTONUP:
-            if(xkatt<= teglalap.x+teglalap.w && xkatt >= teglalap.x && ykatt>=teglalap.y && ykatt <= teglalap.y+teglalap.h && ev.button.button==SDL_BUTTON_LEFT){
-                return 0;}
-        }
-    }*/
     return tovabb_gomb(renderer, teglalap, font_h, h/14, feher);
 }

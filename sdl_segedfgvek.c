@@ -130,7 +130,7 @@ bool input_text(char *dest, size_t hossz, SDL_Rect teglalap, SDL_Color hatter, S
 }
 
 int beolvas_rajzol(SDL_Renderer *renderer, int *adat, char *szoveg){
-    char bemenet[10];
+    char bemenet[10]; //9 számjegynél nem valószínű hogy nagyobb szám lesz
 
     TTF_Init();
     TTF_Font *fontszam = TTF_OpenFont("LiberationSerif-Regular.ttf", 150);
@@ -176,4 +176,31 @@ void mezo_rajzol(SDL_Renderer *renderer, SDL_Texture *mezok, MezoKepek melyik, i
     SDL_Rect dest = { x*MERET, y*MERET, MERET, MERET };
     /* kepreszlet masolasa */
     SDL_RenderCopy(renderer, mezok, &src, &dest);
+}
+
+int tovabb_gomb(SDL_Renderer *renderer, SDL_Rect teglalap, TTF_Font *font, int fontmeret, SDL_Color szin){
+    SDL_RenderFillRect(renderer, &teglalap);
+    rectangleRGBA(renderer, teglalap.x, teglalap.y, teglalap.x+teglalap.w, teglalap.y+teglalap.h, szin.r, szin.g, szin.b, 255);
+    szovegir("TOVÁBB", szin, font, renderer, teglalap.w, teglalap.x, teglalap.y+(teglalap.h-fontmeret)/2);
+    SDL_RenderPresent(renderer);
+
+    TTF_CloseFont(font);
+
+    SDL_Event ev;
+    int x, y;
+    while(1){
+        SDL_WaitEvent(&ev);
+        switch(ev.type){
+        case SDL_QUIT:
+            SDL_Quit();
+            return 1;
+        case SDL_MOUSEBUTTONDOWN:
+            x=ev.button.x;
+            y=ev.button.y;
+            break;
+        case SDL_MOUSEBUTTONUP:
+            if(x<= teglalap.x+teglalap.w && x >= teglalap.x && y>=teglalap.y && y <= teglalap.y+teglalap.h && ev.button.button==SDL_BUTTON_LEFT)
+                return 0;
+        }
+    }
 }

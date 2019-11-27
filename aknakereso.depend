@@ -626,7 +626,7 @@
 	"structok.h"
 	"sdl_segedfgvek.h"
 
-1574799361 source:c:\projects\codeblocks\aknakereso\aknakereso\jatek_fgvek.c
+1574863413 source:c:\projects\codeblocks\aknakereso\aknakereso\jatek_fgvek.c
 	"jatek_fgvek.h"
 	"structok.h"
 	<stdbool.h>
@@ -669,7 +669,7 @@
 1574803308 c:\projects\codeblocks\aknakereso\aknakereso\ranglista.h
 	"structok.h"
 
-1574800363 source:c:\projects\codeblocks\aknakereso\aknakereso\sdl_fgvek.c
+1574890582 source:c:\projects\codeblocks\aknakereso\aknakereso\sdl_fgvek.c
 	<SDL2/SDL.h>
 	<SDL2/SDL2_gfxPrimitives.h>
 	<SDL2/SDL_ttf.h>
@@ -711,7 +711,7 @@
 	<SDL2/SDL.h>
 	<SDL2/SDL2_gfxPrimitives.h>
 
-1574632752 c:\projects\codeblocks\aknakereso\aknakereso\sdl_fgvek.h
+1574888450 c:\projects\codeblocks\aknakereso\aknakereso\sdl_fgvek.h
 	"structok.h"
 
 1574799419 source:c:\projects\codeblocks\aknakereso\aknakereso\ujjatek.c

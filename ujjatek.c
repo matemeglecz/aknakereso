@@ -16,10 +16,10 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
     Jatek j;
     j.jatek_allapot=jatekban;
     time_t start,end;
-    double diff;
+    //double diff;
     Jeloles aktjel;
 
-    if(almenu(renderer, &j.parameterek.szelesseg, &j.parameterek.magassag, &j.parameterek.bombaszam)==1)//kilépés ha 1
+    if(almenu(renderer, &j.parameterek)==1)//kilépés ha 1
         return 1;
     SDL_DestroyWindow(window);
     sdl_init("Aknakereso", &window, &renderer, j.parameterek.szelesseg*20, j.parameterek.magassag*20);
@@ -63,11 +63,11 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
 
     palyarajzol(renderer, j);
     time(&end);
-    diff=difftime(end, start);
 
     if(j.jatek_allapot==nyert){
-        char nev[21];
-        if(nyert_rajzol(renderer, window, nev, diff)==1){//kilépés ha 1
+        Eredmenyadatok eredmeny;
+        eredmeny.ido=difftime(end, start);
+        if(nyert_rajzol(renderer, window, &eredmeny)==1){//kilépés ha 1
             free(j.palya[0]);
             free(j.palya);
             return 1;
@@ -76,7 +76,7 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
         if(*ranglista==NULL)
             *ranglista=ranglistaolv();
 
-        *ranglista=ranglistabair(*ranglista, j.parameterek.szelesseg, j.parameterek.magassag, j.parameterek.bombaszam, diff, nev);//történhetne a név megadás után, most a tovább gomb után ment
+        *ranglista=ranglistabair(*ranglista, j.parameterek, eredmeny);//történhetne a név megadás után, most a tovább gomb után ment
         ranglista_ment(*ranglista);
 
     }
@@ -94,7 +94,7 @@ int ujjatek(ListaPalya **ranglista, SDL_Renderer *renderer, SDL_Window *window){
             sdl_init("Ranglista", &window, &renderer, 800, 600);
             if(*ranglista==NULL)
                 *ranglista=ranglistaolv();
-            if(ranglistakiir_sdl(*ranglista, j.parameterek.szelesseg, j.parameterek.magassag, j.parameterek.bombaszam, renderer)==1){//kilépés ha 1
+            if(ranglistakiir_sdl(*ranglista, j.parameterek, renderer)==1){//kilépés ha 1
                 free(j.palya[0]);
                 free(j.palya);
                 return 1;

@@ -44,7 +44,7 @@ int fomenu(SDL_Renderer *renderer, SDL_Window *window){
     const int w=800;
     const int h=600;
 
-    SDL_Texture *menukep= IMG_LoadTexture(renderer, "menukep.png");
+    SDL_Texture *menukep= IMG_LoadTexture(renderer, "menukep.jpg");
     if (menukep == NULL) {
         SDL_Log("Nem nyithato meg a kepfajl: %s", IMG_GetError());
         exit(1);
@@ -131,7 +131,7 @@ int static palyaadatok_beolvas(SDL_Renderer *renderer, TTF_Font *font, int *adat
     return 0;
 }
 
-int almenu(SDL_Renderer *renderer, int *szelesseg, int *magassag, int *bombaszam){
+int almenu(SDL_Renderer *renderer, Palyaparameterek *parameterek){
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
@@ -169,19 +169,19 @@ int almenu(SDL_Renderer *renderer, int *szelesseg, int *magassag, int *bombaszam
             break;
         case SDL_MOUSEBUTTONUP:
             if(x<=600 && x >= 200 && y>=63 && y <= 163 && ev.button.button==SDL_BUTTON_LEFT){
-                *szelesseg=8;
-                *magassag=8;
-                *bombaszam=10;
+                parameterek->szelesseg=8;
+                parameterek->magassag=8;
+                parameterek->bombaszam=10;
                 sikereskatt=true;}
             if(x<=600 && x >= 200 && y>=188 && y <= 288 && ev.button.button==SDL_BUTTON_LEFT){
-                *szelesseg=16;
-                *magassag=16;
-                *bombaszam=40;
+                parameterek->szelesseg=16;
+                parameterek->magassag=16;
+                parameterek->bombaszam=40;
                 sikereskatt=true;}
             if(x<=600 && x >= 200 && y>=312 && y <= 412 && ev.button.button==SDL_BUTTON_LEFT){
-                *szelesseg=30;
-                *magassag=16;
-                *bombaszam=99;
+                parameterek->szelesseg=30;
+                parameterek->magassag=16;
+                parameterek->bombaszam=99;
                 sikereskatt=true;}
             if(x<=600 && x >= 200 && y>=437 && y <= 537 && ev.button.button==SDL_BUTTON_LEFT){
                 SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -190,13 +190,12 @@ int almenu(SDL_Renderer *renderer, int *szelesseg, int *magassag, int *bombaszam
                 SDL_GetDesktopDisplayMode(0, &DM);
 
                 //ha bármelyik 1 akkor a következők nem lesznek már megnézve
-                if(palyaadatok_beolvas(renderer, font, szelesseg, DM.w/20, 6, "X", "Túl nagy a méret.", "Minimum 6 széles.")==1 ||
-                   palyaadatok_beolvas(renderer, font, magassag, DM.h/20-4, 6, "Y", "Túl nagy a méret.", "Minimum 6 széles.")==1 || //-4, hogy az ablak fejléce kiférjen a képernyőre, illetve hogy a képernyő alján a taskbar alá ne lógjon be az ablak
-                   palyaadatok_beolvas(renderer, font, bombaszam, (*szelesseg)*(*magassag)-1, 1, "Bombaszám", "Túl sok bomba.", "Minimum 1 bomba.")==1){
+                if(palyaadatok_beolvas(renderer, font, &parameterek->szelesseg, DM.w/20, 6, "X", "Túl nagy a méret.", "Minimum 6 széles.")==1 ||
+                   palyaadatok_beolvas(renderer, font, &parameterek->magassag, DM.h/20-4, 6, "Y", "Túl nagy a méret.", "Minimum 6 széles.")==1 || //-4, hogy az ablak fejléce kiférjen a képernyőre, illetve hogy a képernyő alján a taskbar alá ne lógjon be az ablak
+                   palyaadatok_beolvas(renderer, font, &parameterek->bombaszam, (parameterek->szelesseg)*(parameterek->magassag)-1, 1, "Bombaszám", "Túl sok bomba.", "Minimum 1 bomba.")==1){
                     TTF_CloseFont(font);
                     return 1;
                 }
-
                 sikereskatt=true;
             }
                 break;
@@ -229,12 +228,11 @@ void palyarajzol(SDL_Renderer *renderer, Jatek j){
                 if(j.palya[h][w].bomba_e==bomba)
                     mezo_rajzol(renderer, mezokep, bombakep, w, h);
                 else
-                    mezo_rajzol(renderer, mezokep, j.palya[h][w].nearbomb, w, h);
+                    mezo_rajzol(renderer, mezokep, j.palya[h][w].nearbomb, w, h);//kihasználva hogy az első 9 kép a számokat tartalmazó kép
                 break;
             }
         }
     }
-
     SDL_RenderPresent(renderer);
     SDL_DestroyTexture(mezokep);
 }
@@ -277,7 +275,7 @@ int jelolsdl(Jatek *j, Jeloles *aktjeloles){
 
 }
 
-int nyert_rajzol(SDL_Renderer *renderer, SDL_Window *window, char *nev, int diff){
+int nyert_rajzol(SDL_Renderer *renderer, SDL_Window *window, Eredmenyadatok *eredmeny){
     int w, h;
     SDL_GetWindowSize(window, &w, &h);
 
@@ -311,28 +309,26 @@ int nyert_rajzol(SDL_Renderer *renderer, SDL_Window *window, char *nev, int diff
     SDL_RenderCopy(renderer, konfetti, NULL, &dest);
 
     szovegir("NYERTÉL", sarga, font, renderer, w, 0, h/8-fontmeret/2);
-
     szovegir("NÉV:", sarga, font, renderer, w, 0, teglalap.y-fontmeret);
-
     szovegir("IDŐ:", sarga, font, renderer, w, 0, teglalap.y+teglalap.h+h/6-fontmeret);
 
     char szoveg_ido[16];
-    char ido[5+1]; //egy napnál csak nem fut tovább a játék
+    char idostr[5+1]; //egy napnál csak nem fut tovább a játék
 
-    if(diff<=99999)
-        strcpy(szoveg_ido, itoa(diff, ido, 10));
+    if(eredmeny->ido<=99999)
+        strcpy(szoveg_ido, itoa(eredmeny->ido, idostr, 10));
     else
-        strcpy(ido, "99999"); //ha mégis megtörténne
+        strcpy(idostr, "99999"); //ha mégis megtörténne
 
     strcat(szoveg_ido, " másodperc");
     szovegir(szoveg_ido, sarga, font, renderer, w, 0, teglalap.y+teglalap.h+h/6);
 
     //név bekérés min 1 karakter
-    if(!input_text(nev, 20, teglalap, fekete, sarga, font, renderer)){
+    if(!input_text(eredmeny->nev, 20, teglalap, fekete, sarga, font, renderer)){
         TTF_CloseFont(font);
         return 1;
     }
-    while(strlen(nev)==0){
+    while(strlen(eredmeny->nev)==0){
         TTF_Init();
         TTF_Font *font_hiba = TTF_OpenFont("LiberationSerif-Regular.ttf", 2*fontmeret/3);
         if(!font){
@@ -340,7 +336,7 @@ int nyert_rajzol(SDL_Renderer *renderer, SDL_Window *window, char *nev, int diff
             exit(1);
         }
         szovegir("Min 1 karakter", piros, font_hiba, renderer, w, 0, teglalap.y+teglalap.h);
-        if(!input_text(nev, 20, teglalap, fekete, sarga, font, renderer)){ //ha false akkor kilépett a felhasználó
+        if(!input_text(eredmeny->nev, 20, teglalap, fekete, sarga, font, renderer)){ //ha false akkor kilépett a felhasználó
             TTF_CloseFont(font);
             TTF_CloseFont(font_hiba);
             return 1;
@@ -442,7 +438,7 @@ int veszt_rajzol(SDL_Renderer *renderer, SDL_Window *window){
     return tovabb_gomb(renderer, teglalap, font, fontmeret, feher);
 }
 
-int ranglistakiir_sdl(ListaPalya *eleje, int x, int y, int bombaszam, SDL_Renderer *renderer){
+int ranglistakiir_sdl(ListaPalya *eleje, Palyaparameterek parameterek, SDL_Renderer *renderer){
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
@@ -465,11 +461,11 @@ int ranglistakiir_sdl(ListaPalya *eleje, int x, int y, int bombaszam, SDL_Render
         exit(1);
     }
 
-    if(x==8 && y==8 && bombaszam==10)
+    if(parameterek.szelesseg==8 && parameterek.magassag==8 && parameterek.bombaszam==10)
         szovegir("Könnyű", feher, font_h, renderer, w, 0, h/7);
-    else if(x==16 &&y==16 && bombaszam==40)
+    else if(parameterek.szelesseg==16 && parameterek.magassag==16 && parameterek.bombaszam==40)
         szovegir("Közepes", feher, font_h, renderer, w, 0, h/7);
-    else if(x==30 && y==16 && bombaszam==99)
+    else if(parameterek.szelesseg==30 && parameterek.magassag==16 && parameterek.bombaszam==99)
         szovegir("Nehéz", feher, font_h, renderer, w, 0, h/7);
     else
         szovegir("Egyéb méretek", feher, font_h, renderer, w, 0, h/7);
@@ -480,9 +476,9 @@ int ranglistakiir_sdl(ListaPalya *eleje, int x, int y, int bombaszam, SDL_Render
     else{
         int helyezes=0;
         ListaPalya *palyakeres=eleje;
-        while(palyakeres->kovpalya!=NULL && !(palyakeres->palya_parameterek.szelesseg==x && palyakeres->palya_parameterek.magassag==y && palyakeres->palya_parameterek.bombaszam==bombaszam))
+        while(palyakeres->kovpalya!=NULL && !(palyakeres->palya_parameterek.szelesseg==parameterek.szelesseg && palyakeres->palya_parameterek.magassag==parameterek.magassag && palyakeres->palya_parameterek.bombaszam==parameterek.bombaszam))
             palyakeres=palyakeres->kovpalya;
-            if(palyakeres->palya_parameterek.szelesseg==x && palyakeres->palya_parameterek.magassag==y && palyakeres->palya_parameterek.bombaszam==bombaszam){
+            if(palyakeres->palya_parameterek.szelesseg==parameterek.szelesseg && palyakeres->palya_parameterek.magassag==parameterek.magassag && palyakeres->palya_parameterek.bombaszam==parameterek.bombaszam){
                 for(ListaJatekosok *mozgo=palyakeres->jatekosok; mozgo!=NULL && helyezes<10; mozgo=mozgo->kov){
                     char helyezesstring[4];
                     itoa(helyezes+1, helyezesstring, 10);
@@ -490,11 +486,11 @@ int ranglistakiir_sdl(ListaPalya *eleje, int x, int y, int bombaszam, SDL_Render
                     szovegir(helyezesstring, feher, font_h, renderer, 150, 0, (helyezes+3)*h/14);
 
                     char idostring[9];
-                    itoa(mozgo->ido, idostring, 10);
+                    itoa(mozgo->adatok.ido, idostring, 10);
                     strcat(idostring, " mp");
                     szovegir(idostring, feher, font_h,renderer, 250, 150, (helyezes+3)*h/14);
 
-                    szovegir(mozgo->nev, feher, font_h,renderer, 400, 400, (helyezes+3)*h/14);
+                    szovegir(mozgo->adatok.nev, feher, font_h,renderer, 400, 400, (helyezes+3)*h/14);
                     helyezes++;
                 }
             }

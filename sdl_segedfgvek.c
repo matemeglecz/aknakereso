@@ -160,15 +160,16 @@ int beolvas_rajzol(SDL_Renderer *renderer, int *adat, char *szoveg){
     if(!sikeres_beolv) return 1;
     if(strlen(bemenet)==0) return 2;
     for(int i=0; i<strlen(bemenet); i++){
-        if(bemenet[i]<'0' || bemenet[i]>'9')
+        if(isdigit(bemenet[i])==0)//bemenet szám-e
             return 2;
     }
+
     *adat=atoi(bemenet);
 
     return 0;
 }
 
-enum { MERET = 20 };
+enum { MERET = 20 }; //egy mezo oldalainak pixel száma
 void mezo_rajzol(SDL_Renderer *renderer, SDL_Texture *mezok, MezoKepek melyik, int x, int y) {
     /* a forras kepbol ezekrol a koordinatakrol, ilyen meretu reszletet masolunk. */
     SDL_Rect src = { (melyik % 6) * 20, (melyik / 6) * 20, MERET, MERET };

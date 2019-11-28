@@ -4,7 +4,7 @@
 
 ListaPalya* ranglistaolv();
 void ranglista_ment(ListaPalya *ranglista);
-ListaPalya* ranglistabair(ListaPalya *ranglista, int x, int y, int bombaszam, int ido, char *nev);
+ListaPalya* ranglistabair(ListaPalya *ranglista, Palyaparameterek parameterek, Eredmenyadatok eredmeny);
 void felszabPalyalista(ListaPalya *eleje);
 
 #endif // RANGLSITA_H_INCLUDED

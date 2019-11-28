@@ -31,15 +31,15 @@
 5	5	1	2	jeeeee
 10	10	3	5	gfsd
 8	8	10	23	TassLee
+8	8	10	24	itt a baj
 8	8	10	25	okko
 8	8	10	27	helló
+8	8	10	27	ijjj
 8	8	10	28	Mate voltam kösz
 8	8	10	29	hohohó
+8	8	10	30	Máté
+8	8	10	32	huuh
 8	8	10	33	ujhbsd
-8	8	10	33	iowrhng
-8	8	10	36	adfg
-8	8	10	38	TassLee
-8	8	10	40	juhuuuu
 10	23	10	12	buh
 6	6	3	7	jó lesz
 6	6	3	9	jó ez
@@ -79,3 +79,5 @@
 10	20	10	12	szuper vagyok
 96	54	10	13	i have big pp
 6	7	3	12	izémizé
+12	12	12	18	huhuuu
+50	23	34	44	knos

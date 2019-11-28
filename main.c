@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
     SDL_Window *window;
     SDL_Renderer *renderer;
     ListaPalya *ranglista=NULL;
-    int x, y, bombaszam;
+    Palyaparameterek parameterek;
 
     while(1){
         sdl_init("Aknakereso", &window, &renderer, 800, 600);
@@ -25,14 +25,14 @@ int main(int argc, char *argv[]){
                 }
                 break;
             case 2://ranglista
-                if(almenu(renderer, &x, &y, &bombaszam)==1){
+                if(almenu(renderer, &parameterek)==1){
                     felszabPalyalista(ranglista);
                     return 0;
                 }
 
                 if(ranglista==NULL)
                     ranglista=ranglistaolv();
-                if(ranglistakiir_sdl(ranglista, x, y, bombaszam, renderer)==1){//kilépés
+                if(ranglistakiir_sdl(ranglista, parameterek, renderer)==1){//kilépés
                     felszabPalyalista(ranglista);
                     return 0;
                 }

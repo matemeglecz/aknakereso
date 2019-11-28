@@ -15,18 +15,18 @@ static ListaJatekosok* listarendez(ListaJatekosok *eleje, ListaJatekosok *uj){
     else{
         ListaJatekosok *lemarado=NULL;
         ListaJatekosok *mozgo=eleje;
-        while(mozgo->kov!=NULL && mozgo->ido <= uj->ido){
+        while(mozgo->kov!=NULL && mozgo->adatok.ido <= uj->adatok.ido){
             lemarado=mozgo;
             mozgo=mozgo->kov;
         }
-        if(mozgo->kov==NULL && mozgo->ido <= uj->ido){
+        if(mozgo->kov==NULL && mozgo->adatok.ido <= uj->adatok.ido){
             uj->kov=NULL;
             mozgo->kov=uj;
         }else{
             if(lemarado!=NULL){
                 uj->kov=mozgo;
                 lemarado->kov=uj;
-            }else if(mozgo->ido > uj->ido){
+            }else if(mozgo->adatok.ido > uj->adatok.ido){
                 uj->kov=eleje;
                 eleje=uj;
             }
@@ -35,46 +35,49 @@ static ListaJatekosok* listarendez(ListaJatekosok *eleje, ListaJatekosok *uj){
     return eleje;
 }
 
-static ListaPalya* ujlistapalya(int aktx, int akty, int aktbombaszam, int aktido, char *nev){
+static ListaPalya* ujlistapalya(Palyaparameterek aktparameterek, Eredmenyadatok akteredmeny){
     ListaPalya *ujpalya=(ListaPalya*)malloc(sizeof(ListaPalya));
-    ujpalya->palya_parameterek.szelesseg=aktx;
-    ujpalya->palya_parameterek.magassag=akty;
-    ujpalya->palya_parameterek.bombaszam=aktbombaszam;
+    ujpalya->palya_parameterek.szelesseg=aktparameterek.szelesseg;
+    ujpalya->palya_parameterek.magassag=aktparameterek.magassag;
+    ujpalya->palya_parameterek.bombaszam=aktparameterek.bombaszam;
     ujpalya->kovpalya=NULL;
     ujpalya->jatekosok=(ListaJatekosok*)malloc(sizeof(ListaJatekosok));
-    ujpalya->jatekosok->ido=aktido;
-    strcpy(ujpalya->jatekosok->nev, nev);
+    ujpalya->jatekosok->adatok.ido=akteredmeny.ido;
+    strcpy(ujpalya->jatekosok->adatok.nev, akteredmeny.nev);
     ujpalya->jatekosok->kov=NULL;
     return ujpalya;
 }
 
-static ListaPalya* vanranglista(ListaPalya *eleje, int aktx, int akty, int aktbombaszam, int aktido, char *nev){
+static ListaPalya* vanranglista(ListaPalya *eleje, Palyaparameterek aktparameterek, Eredmenyadatok akteredmeny){
     ListaPalya* mozgoPalya=eleje;
-    while(!(mozgoPalya->palya_parameterek.szelesseg == aktx && mozgoPalya->palya_parameterek.magassag == akty && mozgoPalya->palya_parameterek.bombaszam == aktbombaszam) && mozgoPalya->kovpalya != NULL){
+    while(!(mozgoPalya->palya_parameterek.szelesseg == aktparameterek.szelesseg &&
+            mozgoPalya->palya_parameterek.magassag == aktparameterek.magassag &&
+            mozgoPalya->palya_parameterek.bombaszam == aktparameterek.bombaszam) &&
+            mozgoPalya->kovpalya != NULL){
         mozgoPalya=mozgoPalya->kovpalya;
     }
 
-    if(mozgoPalya->palya_parameterek.szelesseg==aktx && mozgoPalya->palya_parameterek.magassag==akty && mozgoPalya->palya_parameterek.bombaszam==aktbombaszam){
+    if(mozgoPalya->palya_parameterek.szelesseg==aktparameterek.szelesseg && mozgoPalya->palya_parameterek.magassag==aktparameterek.magassag && mozgoPalya->palya_parameterek.bombaszam==aktparameterek.bombaszam){
         ListaJatekosok *ujjatekos=(ListaJatekosok *)malloc(sizeof(ListaJatekosok));
-        ujjatekos->ido=aktido;
-        strcpy(ujjatekos->nev, nev);
+        ujjatekos->adatok.ido=akteredmeny.ido;
+        strcpy(ujjatekos->adatok.nev, akteredmeny.nev);
         mozgoPalya->jatekosok=listarendez(mozgoPalya->jatekosok, ujjatekos);
     }
     else{ //ha még nincs ilyen pályamérethez tartozó lista
-        mozgoPalya->kovpalya=ujlistapalya(aktx, akty, aktbombaszam, aktido, nev);
+        mozgoPalya->kovpalya=ujlistapalya(aktparameterek, akteredmeny);
     }
     return eleje;
 }
 
 static ListaPalya* fajlbol_listaba(FILE *fp, ListaPalya *eleje){
-    int aktx, akty ,aktbombaszam, aktido;
-    char nev[21];
-    while(fscanf(fp," %d  %d  %d  %d  %[^\n]", &aktx, &akty, &aktbombaszam, &aktido, nev) >0){
+    Palyaparameterek aktparameterek;
+    Eredmenyadatok akteredmeny;
+    while(fscanf(fp," %d  %d  %d  %d  %[^\n]", &aktparameterek.szelesseg, &aktparameterek.magassag, &aktparameterek.bombaszam, &akteredmeny.ido, akteredmeny.nev) >0){
         if(eleje==NULL){
-            eleje=ujlistapalya(aktx, akty, aktbombaszam, aktido, nev);
+            eleje=ujlistapalya(aktparameterek, akteredmeny);
         }
         else
-            eleje=vanranglista(eleje, aktx, akty, aktbombaszam, aktido, nev);
+            eleje=vanranglista(eleje, aktparameterek, akteredmeny);
     }
     return eleje;
 }
@@ -83,7 +86,7 @@ void static fajlba_lista(FILE *fp, ListaPalya *eleje){
     for(ListaPalya *mozgoPalya=eleje; mozgoPalya!=NULL; mozgoPalya=mozgoPalya->kovpalya){
         int helyezes=0;// mindig csak a top 10 lesz visszamentve, a többi úgyis jelentéktelen
         for(ListaJatekosok *mozgoJatekosok=mozgoPalya->jatekosok; mozgoJatekosok!=NULL && helyezes<10; mozgoJatekosok=mozgoJatekosok->kov){
-            fprintf(fp, "%d\t%d\t%d\t%d\t%s\n", mozgoPalya->palya_parameterek.szelesseg, mozgoPalya->palya_parameterek.magassag, mozgoPalya->palya_parameterek.bombaszam, mozgoJatekosok->ido, mozgoJatekosok->nev);
+            fprintf(fp, "%d\t%d\t%d\t%d\t%s\n", mozgoPalya->palya_parameterek.szelesseg, mozgoPalya->palya_parameterek.magassag, mozgoPalya->palya_parameterek.bombaszam, mozgoJatekosok->adatok.ido, mozgoJatekosok->adatok.nev);
             helyezes++;
         }
     }
@@ -123,11 +126,11 @@ ListaPalya* ranglistaolv(){
     return eleje;
 }
 
-ListaPalya* ranglistabair(ListaPalya *ranglista, int x, int y, int bombaszam, int ido, char *nev){
+ListaPalya* ranglistabair(ListaPalya *ranglista, Palyaparameterek parameterek, Eredmenyadatok eredmeny){
     if(ranglista==NULL)
-        ranglista=ujlistapalya(x, y, bombaszam, ido, nev);
+        ranglista=ujlistapalya(parameterek, eredmeny);
     else
-        ranglista=vanranglista(ranglista, x, y, bombaszam, ido, nev);
+        ranglista=vanranglista(ranglista, parameterek, eredmeny);
 
     return ranglista;
 }

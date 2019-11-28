@@ -41,9 +41,13 @@ typedef struct Jeloles{
     Jeltype jel;
 }Jeloles;
 
-typedef struct ListaJatekosok{
+typedef struct Eredmenyadatok{
     int ido;
     char nev[21];
+}Eredmenyadatok;
+
+typedef struct ListaJatekosok{
+    Eredmenyadatok adatok;
     struct ListaJatekosok *kov;
 }ListaJatekosok;
 
